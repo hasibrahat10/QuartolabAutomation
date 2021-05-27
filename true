@@ -1,0 +1,184 @@
+[1622111064.815][INFO]: Starting ChromeDriver 90.0.4430.24 (4c6d850f087da467d926e8eddb76550aed655991-refs/branch-heads/4430@{#429}) on port 21048
+[1622111064.817][INFO]: Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1622111065.870][INFO]: [2b13dab49872566954815b5e98633289] COMMAND InitSession {
+   "capabilities": {
+      "firstMatch": [ {
+         "browserName": "chrome",
+         "goog:chromeOptions": {
+            "args": [ "--ignore-certificate-errors" ],
+            "extensions": [  ]
+         }
+      } ]
+   },
+   "desiredCapabilities": {
+      "browserName": "chrome",
+      "goog:chromeOptions": {
+         "args": [ "--ignore-certificate-errors" ],
+         "extensions": [  ]
+      }
+   }
+}
+[1622111065.879][INFO]: Populating Preferences file: {
+   "alternate_error_pages": {
+      "enabled": false
+   },
+   "autofill": {
+      "enabled": false
+   },
+   "browser": {
+      "check_default_browser": false
+   },
+   "distribution": {
+      "import_bookmarks": false,
+      "import_history": false,
+      "import_search_engine": false,
+      "make_chrome_default_for_user": false,
+      "skip_first_run_ui": true
+   },
+   "dns_prefetching": {
+      "enabled": false
+   },
+   "profile": {
+      "content_settings": {
+         "pattern_pairs": {
+            "https://*,*": {
+               "media-stream": {
+                  "audio": "Default",
+                  "video": "Default"
+               }
+            }
+         }
+      },
+      "default_content_setting_values": {
+         "geolocation": 1
+      },
+      "default_content_settings": {
+         "geolocation": 1,
+         "mouselock": 1,
+         "notifications": 1,
+         "popups": 1,
+         "ppapi-broker": 1
+      },
+      "password_manager_enabled": false
+   },
+   "safebrowsing": {
+      "enabled": false
+   },
+   "search": {
+      "suggest_enabled": false
+   },
+   "translate": {
+      "enabled": false
+   }
+}
+[1622111065.880][INFO]: Populating Local State file: {
+   "background_mode": {
+      "enabled": false
+   },
+   "ssl": {
+      "rev_checking": {
+         "enabled": false
+      }
+   }
+}
+[1622111065.885][INFO]: Launching chrome: "C:\Program Files\Google\Chrome\Application\chrome.exe" --disable-background-networking --disable-backgrounding-occluded-windows --disable-client-side-phishing-detection --disable-default-apps --disable-hang-monitor --disable-popup-blocking --disable-prompt-on-repost --disable-sync --enable-automation --enable-blink-features=ShadowDOMV0 --enable-logging --ignore-certificate-errors --log-level=0 --no-first-run --no-service-autorun --password-store=basic --remote-debugging-port=0 --test-type=webdriver --use-mock-keychain --user-data-dir="C:\Users\BHALOG~1\AppData\Local\Temp\scoped_dir6668_690182850" data:,
+[1622111067.500][INFO]: resolved localhost to ["::1","127.0.0.1"]
+[1622111067.536][INFO]: [2b13dab49872566954815b5e98633289] RESPONSE InitSession {
+   "capabilities": {
+      "acceptInsecureCerts": false,
+      "browserName": "chrome",
+      "browserVersion": "90.0.4430.212",
+      "chrome": {
+         "chromedriverVersion": "90.0.4430.24 (4c6d850f087da467d926e8eddb76550aed655991-refs/branch-heads/4430@{#429})",
+         "userDataDir": "C:\\Users\\BHALOG~1\\AppData\\Local\\Temp\\scoped_dir6668_690182850"
+      },
+      "goog:chromeOptions": {
+         "debuggerAddress": "localhost:54315"
+      },
+      "networkConnectionEnabled": false,
+      "pageLoadStrategy": "normal",
+      "platformName": "windows",
+      "proxy": {
+
+      },
+      "setWindowRect": true,
+      "strictFileInteractability": false,
+      "timeouts": {
+         "implicit": 0,
+         "pageLoad": 300000,
+         "script": 30000
+      },
+      "unhandledPromptBehavior": "dismiss and notify",
+      "webauthn:extension:largeBlob": true,
+      "webauthn:virtualAuthenticators": true
+   },
+   "sessionId": "2b13dab49872566954815b5e98633289"
+}
+[1622111067.605][INFO]: [2b13dab49872566954815b5e98633289] COMMAND MaximizeWindow {
+
+}
+[1622111067.606][INFO]: Waiting for pending navigations...
+[1622111067.612][INFO]: Done waiting for pending navigations. Status: ok
+[1622111067.614][INFO]: resolved localhost to ["::1","127.0.0.1"]
+[1622111067.756][INFO]: Waiting for pending navigations...
+[1622111067.757][INFO]: Done waiting for pending navigations. Status: ok
+[1622111067.757][INFO]: [2b13dab49872566954815b5e98633289] RESPONSE MaximizeWindow {
+   "height": 744,
+   "width": 1382,
+   "x": -8,
+   "y": 32
+}
+[1622111067.771][INFO]: [2b13dab49872566954815b5e98633289] COMMAND SetTimeouts {
+   "implicit": 20000
+}
+[1622111067.799][INFO]: [2b13dab49872566954815b5e98633289] RESPONSE SetTimeouts
+[1622111067.817][INFO]: [2b13dab49872566954815b5e98633289] COMMAND Navigate {
+   "url": "https://quartolab.com/"
+}
+[1622111067.818][INFO]: Waiting for pending navigations...
+[1622111067.818][INFO]: Done waiting for pending navigations. Status: ok
+[1622111068.751][INFO]: Waiting for pending navigations...
+[1622111073.014][INFO]: Done waiting for pending navigations. Status: ok
+[1622111073.014][INFO]: [2b13dab49872566954815b5e98633289] RESPONSE Navigate
+[1622111073.065][INFO]: [2b13dab49872566954815b5e98633289] COMMAND FindElement {
+   "using": "xpath",
+   "value": "//a[contains(text(),'features')]"
+}
+[1622111073.065][INFO]: Waiting for pending navigations...
+[1622111073.066][INFO]: Done waiting for pending navigations. Status: ok
+[1622111073.102][INFO]: Waiting for pending navigations...
+[1622111073.103][INFO]: Done waiting for pending navigations. Status: ok
+[1622111073.103][INFO]: [2b13dab49872566954815b5e98633289] RESPONSE FindElement {
+   "element-6066-11e4-a52e-4f735466cecf": "dfffdb27-d54b-48ef-bf10-dfe423d31b49"
+}
+[1622111073.126][INFO]: [2b13dab49872566954815b5e98633289] COMMAND ClickElement {
+   "id": "dfffdb27-d54b-48ef-bf10-dfe423d31b49"
+}
+[1622111073.126][INFO]: Waiting for pending navigations...
+[1622111073.126][INFO]: Done waiting for pending navigations. Status: ok
+[1622111073.196][INFO]: Waiting for pending navigations...
+[1622111073.197][INFO]: Done waiting for pending navigations. Status: ok
+[1622111073.197][INFO]: [2b13dab49872566954815b5e98633289] RESPONSE ClickElement
+[1622111081.223][INFO]: [2b13dab49872566954815b5e98633289] COMMAND FindElement {
+   "using": "xpath",
+   "value": "//h2[contains(text(),'quarto features')]"
+}
+[1622111081.223][INFO]: Waiting for pending navigations...
+[1622111081.224][INFO]: Done waiting for pending navigations. Status: ok
+[1622111081.234][INFO]: Waiting for pending navigations...
+[1622111081.234][INFO]: Done waiting for pending navigations. Status: ok
+[1622111081.234][INFO]: [2b13dab49872566954815b5e98633289] RESPONSE FindElement {
+   "element-6066-11e4-a52e-4f735466cecf": "da75cf63-8a95-4c0d-b0dc-29bd6c19c081"
+}
+[1622111081.236][INFO]: [2b13dab49872566954815b5e98633289] COMMAND GetElementText {
+   "id": "da75cf63-8a95-4c0d-b0dc-29bd6c19c081"
+}
+[1622111081.236][INFO]: Waiting for pending navigations...
+[1622111081.237][INFO]: Done waiting for pending navigations. Status: ok
+[1622111081.251][INFO]: Waiting for pending navigations...
+[1622111081.252][INFO]: Done waiting for pending navigations. Status: ok
+[1622111081.252][INFO]: [2b13dab49872566954815b5e98633289] RESPONSE GetElementText "QUARTO FEATURES"
+[1622111081.269][INFO]: [2b13dab49872566954815b5e98633289] COMMAND Quit {
+
+}
+[1622111081.375][INFO]: [2b13dab49872566954815b5e98633289] RESPONSE Quit
