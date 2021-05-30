@@ -56,4 +56,26 @@ public class HomePageSteps extends TestSetupPage {
     public void iClickOnFeaturesPricingAndLogoImage() {
         new HomePage().setLogMenuItem();
     }
+
+    // Request Demo Screen
+
+
+    @Then("I click on request demo button")
+    public void i_click_on_request_demo_button() {
+        new HomePage().setRequestDemo();
+
+    }
+
+    @Then("I have entered the form information and click submit")
+    public void i_have_entered_the_form_information_and_click_submit() {
+        new HomePage().setFormDetails();
+
+    }
+
+    @Then("I close the success alert")
+    public void i_close_the_success_alert() {
+        new HomePage().setCloseSuccess();
+    }
+
+
 }

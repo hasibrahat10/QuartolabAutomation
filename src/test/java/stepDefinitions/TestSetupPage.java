@@ -39,7 +39,7 @@ public class TestSetupPage {
     public static void scrollDown(int count) {
         // This  will scroll down the page by  100 pixel vertical
         for (int i = 0; i < count; i++) {
-            js.executeScript("window.scrollBy(0, 100)");
+            js.executeScript("window.scrollBy(0, 300)");
             sleepFor(1);
         }
     }

@@ -51,6 +51,31 @@ public class HomePage extends TestSetupPage {
     @FindBy(xpath = "//a[contains(text(),'Home')]")
     WebElement home;
 
+    //Request Demo Element Finder
+
+    @FindBy(xpath = "(//a[contains(text(),'Request Demo')])[2]")
+    WebElement requestDemo;
+
+    @FindBy(id = "name")
+    WebElement userName;
+
+    @FindBy(id = "email")
+    WebElement userEmail;
+
+    @FindBy(id = "companyname")
+    WebElement companyName;
+
+    @FindBy(id = "phonenumber")
+    WebElement phoneNumber;
+
+    @FindBy(id = "message")
+    WebElement message;
+
+    @FindBy(xpath = "//span[contains(text(),'submit')]")
+    WebElement buttonSubmit;
+    @FindBy(xpath = "//span[@class='icon-close']")
+    WebElement closeSuccess;
+
 
     public void setDropMenu() {
         Actions action = new Actions(driver);
@@ -97,7 +122,7 @@ public class HomePage extends TestSetupPage {
 
     // Menu and logo item click
 
-    public void setLogMenuItem(){
+    public void setLogMenuItem() {
         features.click();
         sleepFor(3);
         pricing.click();
@@ -105,5 +130,44 @@ public class HomePage extends TestSetupPage {
         logoImg.click();
         sleepFor(3);
     }
+
+    //Request Demo Screen
+
+    public void setRequestDemo() {
+        requestDemo.click();
+        sleepFor(4);
+        setCookiesAccept();
+
+    }
+
+    public void setFormDetails() {
+        userName.clear();
+        userName.sendKeys("Hasib");
+sleepFor(2);
+        userEmail.clear();
+        userEmail.sendKeys("hasib34@yopmail.com");
+        scrollDown(1);
+        sleepFor(4);
+        companyName.clear();
+        companyName.sendKeys("Demo Company");
+        phoneNumber.clear();
+        phoneNumber.sendKeys("133-233-2335");
+
+
+        message.clear();
+        message.sendKeys("I am trying to access the demo version of Quarto Lab.");
+
+        sleepFor(2);
+
+        buttonSubmit.click();
+        sleepFor(5);
+    }
+
+    public void setCloseSuccess() {
+
+        closeSuccess.click();
+        sleepFor(4);
+    }
+
 
 }
