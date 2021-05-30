@@ -1,19 +1,20 @@
 # QuartolabAutomation
-Practice test with Java, Selenium Webdriver, Cucumber, Gherkin
 
+Practice test with Java, Selenium Webdriver, Cucumber, Gherkin
 
 ====================================== ====================================
 
-Java Selenium Cucumber Gherkin Maven web Automation for Quartolab Web Automation Technologies Where I have used Java, Selenium, Cucumber, Gherkin and Maven setup Before installation We need to maintain the automation requirments
+Java Selenium Cucumber Gherkin Maven web Automation for Quartolab Web Automation Technologies Where I have used Java,
+Selenium, Cucumber, Gherkin and Maven setup Before installation We need to maintain the automation requirments
 
 ====================== System Requirements(Lower requirement will be worked but slow way) ================
 
-(I) Ram 8GB(Depends On Machine) (II) Processor Core I-3MIn 7th Gen (III) Update IDE - IntelliJ / VSCode / XCode / Netbeans etc 
+(I) Ram 8GB(Depends On Machine) (II) Processor Core I-3MIn 7th Gen (III) Update IDE - IntelliJ / VSCode / XCode /
+Netbeans etc
 
-(IV) Update Drivers (Selenium webdriver ) the browsers we want to automated(ChromeDriver) 
+(IV) Update Drivers (Selenium webdriver ) the browsers we want to automated(ChromeDriver)
 
-(V) Update browsers version with Driver Version (VI) JDK kit  (VII) Cucumber Plugin 
-
+(V) Update browsers version with Driver Version (VI) JDK kit  (VII) Cucumber Plugin
 
 ===================== Folder Structure ========================
 

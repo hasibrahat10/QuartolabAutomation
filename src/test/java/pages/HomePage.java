@@ -11,12 +11,14 @@ public class HomePage extends TestSetupPage {
 
     // ===================  To Find the Elements for the Home Page ===========================
 
+
+    @FindBy(xpath = "//button[contains(text(),'Accept')]")
+    WebElement cookiesAccept;
+
     @FindBy(xpath = "//a[contains(text(),'features')]")
     WebElement features;
     @FindBy(xpath = "//h2[contains(text(),'quarto features')]")
     WebElement textDisplayed;
-
-
 
 
     @FindBy(xpath = "//a[contains(text(),'industries ')]")
@@ -28,7 +30,7 @@ public class HomePage extends TestSetupPage {
     @FindBy(xpath = "//a[contains(text(),'Sign In')]")
     WebElement signIn;
 
-    @FindBy(id="email")
+    @FindBy(id = "email")
     WebElement emailID;
 
     @FindBy(className = "invalid-feedback")
@@ -38,20 +40,14 @@ public class HomePage extends TestSetupPage {
     WebElement next;
 
     @FindBy(xpath = "//a[contains(text(),'Home')]")
- WebElement home;
+    WebElement home;
 
 
-
-
-
-
-
-
- public void setDropMenu(){
-     Actions action = new Actions(driver);
-     action.moveToElement(industriesDropdown).perform();
-     constructionLink.click();
- }
+    public void setDropMenu() {
+        Actions action = new Actions(driver);
+        action.moveToElement(industriesDropdown).perform();
+        constructionLink.click();
+    }
 
 
     //=====================  constructor define ===============================
@@ -71,17 +67,22 @@ public class HomePage extends TestSetupPage {
         return textDisplayed.getText();
     }
 
-    public void setSignInProcess(){
-     signIn.click();
-     emailID.clear();
-     emailID.sendKeys("hasib@yopmail.com");
+    public void setSignInProcess() {
+        signIn.click();
+        emailID.clear();
+        emailID.sendKeys("hasib@yopmail.com");
     }
 
-    public String loginNextProcess(){
-     sleepFor(2);
-     next.click();
-     return errorAlert.getText();
+    public String loginNextProcess() {
+        sleepFor(2);
+        next.click();
+        return errorAlert.getText();
+    }
 
+    //Cookies Accepts
 
+    public void setCookiesAccept() {
+        sleepFor(3);
+        cookiesAccept.click();
     }
 }

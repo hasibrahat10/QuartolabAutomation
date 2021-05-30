@@ -43,4 +43,12 @@ public class HomePageSteps extends TestSetupPage {
 
     }
 
+    // Cookies Accept
+
+    @Then("I click on accept cookies")
+    public void i_click_on_accept_cookies() {
+        new HomePage().setCookiesAccept();
+    }
+
+
 }

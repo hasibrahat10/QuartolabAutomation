@@ -13,5 +13,11 @@ Feature: Quarto Landing Page
     Then Get back to home screen
 
 
+  Scenario: Quarto Cookies
+    Then I click on accept cookies
+
+
+
+
 
 
