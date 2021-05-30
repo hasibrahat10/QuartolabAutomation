@@ -16,6 +16,9 @@ Feature: Quarto Landing Page
   Scenario: Quarto Cookies
     Then I click on accept cookies
 
+    Scenario: Logo and Menu click
+      And I click on features, pricing and logo image
+
 
 
 

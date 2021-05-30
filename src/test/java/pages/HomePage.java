@@ -17,6 +17,15 @@ public class HomePage extends TestSetupPage {
 
     @FindBy(xpath = "//a[contains(text(),'features')]")
     WebElement features;
+
+    @FindBy(xpath = "//a[contains(text(),'pricing')]")
+    WebElement pricing;
+
+
+    @FindBy(xpath = "//img[@class='light']")
+    WebElement logoImg;
+
+
     @FindBy(xpath = "//h2[contains(text(),'quarto features')]")
     WebElement textDisplayed;
 
@@ -85,4 +94,16 @@ public class HomePage extends TestSetupPage {
         sleepFor(3);
         cookiesAccept.click();
     }
+
+    // Menu and logo item click
+
+    public void setLogMenuItem(){
+        features.click();
+        sleepFor(3);
+        pricing.click();
+        sleepFor(3);
+        logoImg.click();
+        sleepFor(3);
+    }
+
 }

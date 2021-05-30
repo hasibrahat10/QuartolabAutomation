@@ -50,5 +50,10 @@ public class HomePageSteps extends TestSetupPage {
         new HomePage().setCookiesAccept();
     }
 
+    // Logo and Menu Click
 
+    @And("I click on features, pricing and logo image")
+    public void iClickOnFeaturesPricingAndLogoImage() {
+        new HomePage().setLogMenuItem();
+    }
 }
