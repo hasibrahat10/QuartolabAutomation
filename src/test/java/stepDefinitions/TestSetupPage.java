@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,6 +15,10 @@ import java.util.logging.Logger;
 public class TestSetupPage {
     public static WebDriver driver;
     public static JavascriptExecutor js;
+    protected static String scenarioName;
+    protected static boolean REMOTE_TEST;
+    private static DesiredCapabilities caps = new DesiredCapabilities();
+
 
 
     //================   RANDOM STRING GENERATE  ========================
@@ -57,6 +62,7 @@ public class TestSetupPage {
         //System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true");
         System.setProperty(ChromeDriverService.CHROME_DRIVER_LOG_PROPERTY, "true");
         Logger.getLogger("").setLevel(Level.OFF);
+        caps.setCapability("name", REMOTE_TEST ? scenarioName : null);
         driver = new ChromeDriver(chromeOptions);
         js = (JavascriptExecutor) driver;
     }

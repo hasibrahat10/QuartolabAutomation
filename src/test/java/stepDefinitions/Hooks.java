@@ -1,14 +1,17 @@
 package stepDefinitions;
 
 
+import helper.FileHelper;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 
 import java.util.concurrent.TimeUnit;
 
 public class Hooks extends TestSetupPage {
     @Before
-    public void setUpDriver() {
+    public void setUpDriver(Scenario scenario) {
+        scenarioName = scenario.getName();
         startDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -17,6 +20,7 @@ public class Hooks extends TestSetupPage {
 
     @After
     public void tearDown() {
+        FileHelper.take_screenshot();
         stopDriver();
     }
 
