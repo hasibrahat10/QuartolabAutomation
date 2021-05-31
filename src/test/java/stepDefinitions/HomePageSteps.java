@@ -45,8 +45,8 @@ public class HomePageSteps extends TestSetupPage {
 
     // Cookies Accept
 
-    @Then("I click on accept cookies")
-    public void i_click_on_accept_cookies() {
+    @Given("I click on accept cookies button")
+    public void iClickOnAcceptCookiesButton() {
         new HomePage().setCookiesAccept();
     }
 
@@ -75,6 +75,19 @@ public class HomePageSteps extends TestSetupPage {
     @Then("I close the success alert")
     public void i_close_the_success_alert() {
         new HomePage().setCloseSuccess();
+    }
+
+
+    @Then("I click on contact us button")
+    public void iClickOnContactUsButton() {
+        new HomePage().setContactUs();
+    }
+
+    @And("I have submit the form info and close the success screen")
+    public void iHaveSubmitTheFormInfoAndCloseTheSuccessScreen() {
+        HomePage homePage = new HomePage();
+        homePage.setFormDetails();
+        homePage.setCloseSuccess();
     }
 
 

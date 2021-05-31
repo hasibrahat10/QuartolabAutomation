@@ -68,6 +68,7 @@ public class HomePage extends TestSetupPage {
     @FindBy(id = "phonenumber")
     WebElement phoneNumber;
 
+
     @FindBy(id = "message")
     WebElement message;
 
@@ -75,6 +76,11 @@ public class HomePage extends TestSetupPage {
     WebElement buttonSubmit;
     @FindBy(xpath = "//span[@class='icon-close']")
     WebElement closeSuccess;
+
+    // Contact Us Form Submission
+
+    @FindBy(xpath = "(//a[contains(text(),'Contact Us')])[1]")
+    WebElement contactUs;
 
 
     public void setDropMenu() {
@@ -137,36 +143,41 @@ public class HomePage extends TestSetupPage {
         requestDemo.click();
         sleepFor(4);
         setCookiesAccept();
+        sleepFor(5);
 
     }
 
     public void setFormDetails() {
         userName.clear();
-        userName.sendKeys("Hasib");
-sleepFor(2);
+        userName.sendKeys("Hasib Rahat");
         userEmail.clear();
-        userEmail.sendKeys("hasib34@yopmail.com");
-        scrollDown(1);
-        sleepFor(4);
+        userEmail.sendKeys("hasib123@yopmail.com");
+
         companyName.clear();
         companyName.sendKeys("Demo Company");
-        phoneNumber.clear();
-        phoneNumber.sendKeys("133-233-2335");
 
+        phoneNumber.clear();
+        phoneNumber.sendKeys("(123) 121-2412");
 
         message.clear();
         message.sendKeys("I am trying to access the demo version of Quarto Lab.");
 
         sleepFor(2);
-
         buttonSubmit.click();
         sleepFor(5);
     }
 
     public void setCloseSuccess() {
-
         closeSuccess.click();
         sleepFor(4);
+    }
+
+    // Contact Us
+
+    public void setContactUs(){
+
+        contactUs.click();
+        sleepFor(2);
     }
 
 
