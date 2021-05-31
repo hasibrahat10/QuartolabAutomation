@@ -122,8 +122,8 @@ public class HomePage extends TestSetupPage {
     //Cookies Accepts
 
     public void setCookiesAccept() {
-        sleepFor(3);
         cookiesAccept.click();
+        sleepFor(5);
     }
 
     // Menu and logo item click
@@ -143,15 +143,14 @@ public class HomePage extends TestSetupPage {
         requestDemo.click();
         sleepFor(4);
         setCookiesAccept();
-        sleepFor(5);
 
     }
 
     public void setFormDetails() {
         userName.clear();
-        userName.sendKeys("Hasib Rahat");
+        userName.sendKeys("Hasib Rahat23");
         userEmail.clear();
-        userEmail.sendKeys("hasib123@yopmail.com");
+        userEmail.sendKeys("hasib126@yopmail.com");
 
         companyName.clear();
         companyName.sendKeys("Demo Company");
@@ -174,8 +173,7 @@ public class HomePage extends TestSetupPage {
 
     // Contact Us
 
-    public void setContactUs(){
-
+    public void setContactUs() {
         contactUs.click();
         sleepFor(2);
     }
