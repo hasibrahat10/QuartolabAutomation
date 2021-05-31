@@ -123,7 +123,7 @@ public class HomePage extends TestSetupPage {
 
     public void setCookiesAccept() {
         cookiesAccept.click();
-        sleepFor(5);
+        sleepFor(2);
     }
 
     // Menu and logo item click

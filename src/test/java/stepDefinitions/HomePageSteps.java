@@ -47,6 +47,7 @@ public class HomePageSteps extends TestSetupPage {
 
     @Given("I click on accept cookies button")
     public void iClickOnAcceptCookiesButton() {
+        sleepFor(10);
         new HomePage().setCookiesAccept();
     }
 
