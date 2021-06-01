@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = {"src/test/java/features"},
-        tags = {"@contact-us"},
+        tags = {"@Menu-test"},
         glue = "stepDefinitions",
         monochrome = true,
         strict = true,

@@ -23,31 +23,31 @@ formatter.result({
   "status": "passed"
 });
 formatter.scenario({
-  "name": "Contact Us",
+  "name": "Features Menu Screen",
   "description": "",
   "keyword": "Scenario",
   "tags": [
     {
-      "name": "@contact-us"
+      "name": "@Menu-test"
     }
   ]
 });
 formatter.step({
-  "name": "I click on contact us button",
+  "name": "I click on features menu",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "stepDefinitions.HomePageSteps.iClickOnContactUsButton()"
+  "location": "stepDefinitions.HomePageSteps.i_click_on_features_menu()"
 });
 formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "I have submit the form info and close the success screen",
+  "name": "I observed the text \"QUARTO FEATURES\"",
   "keyword": "And "
 });
 formatter.match({
-  "location": "stepDefinitions.HomePageSteps.iHaveSubmitTheFormInfoAndCloseTheSuccessScreen()"
+  "location": "stepDefinitions.HomePageSteps.i_observed_the_text(java.lang.String)"
 });
 formatter.result({
   "status": "passed"

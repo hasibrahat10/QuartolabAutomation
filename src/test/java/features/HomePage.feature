@@ -6,7 +6,7 @@ Feature: Quarto Landing Page
   @Menu-test
   Scenario: Features Menu Screen
     Then I click on features menu
-    And I observed the text "QUARTO FEATURESj"
+    And I observed the text "QUARTO FEATURES"
 
   Scenario: Industries menu screen visit
 

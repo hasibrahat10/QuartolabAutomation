@@ -4,5 +4,6 @@ target/
 pom.xml.tag
 pom.xml.next
 release.properties
-test-output
+test-output/
 dependency-reduced-pom.xml
+results
