@@ -12,7 +12,7 @@ import java.util.GregorianCalendar;
 
 public class FileHelper extends TestSetupPage {
     public static String CURRENT_DIR = System.getProperty("user.dir");
-    public static String SCREENSHOT_DIR = CURRENT_DIR + "/results/screenshot/";
+    public static String SCREENSHOT_DIR = CURRENT_DIR + "/target/screenshot/";
 
     public static String DATA_FOLDER = CURRENT_DIR + "/data/";
 
@@ -31,6 +31,7 @@ public class FileHelper extends TestSetupPage {
                 e.printStackTrace();
             }
         }
+
     }
 
     private static String clean_string(String scenario_name) {

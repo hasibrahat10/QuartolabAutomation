@@ -10,7 +10,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class TestSetupPage {
     public static WebDriver driver;
@@ -18,8 +17,6 @@ public class TestSetupPage {
     protected static String scenarioName;
     protected static boolean REMOTE_TEST;
     private static DesiredCapabilities caps = new DesiredCapabilities();
-
-
 
     //================   RANDOM STRING GENERATE  ========================
     public static String randomString() {
@@ -56,13 +53,15 @@ public class TestSetupPage {
 
     //=================================   START DRIVER  =======================================
     public void startDriver() {
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--ignore-certificate-errors");
+        // set properties
         System.setProperty(ChromeDriverService.CHROME_DRIVER_EXE_PROPERTY, System.getProperty("user.dir") + "/drivers/chromedriver_win32/chromedriver.exe");
-        //System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true");
-        System.setProperty(ChromeDriverService.CHROME_DRIVER_LOG_PROPERTY, "true");
-        Logger.getLogger("").setLevel(Level.OFF);
-        caps.setCapability("name", REMOTE_TEST ? scenarioName : null);
+        System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true"); //selenium text ignore
+        java.util.logging.Logger.getLogger("org.openqa.selenium").setLevel(Level.OFF);
+
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--disable-notifications");
+        chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"}); // chrome control text
+        chromeOptions.addArguments("--ignore-certificate-errors");
         driver = new ChromeDriver(chromeOptions);
         js = (JavascriptExecutor) driver;
     }
