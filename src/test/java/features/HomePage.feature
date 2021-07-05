@@ -10,7 +10,7 @@ Feature: Quarto Landing Page
 
   Scenario: Industries menu screen visit
 
-  @login
+  @login-failed
   Scenario:  I want to login Quarto with any email
     Then I click on sign in link
     When I have entered an email id and click on next
@@ -32,6 +32,14 @@ Feature: Quarto Landing Page
   Scenario: Contact Us
     Then I click on contact us button
     And I have submit the form info and close the success screen
+
+  @login
+  Scenario:  I want to login Quarto with a verified email
+    Then I click on sign in link
+    And I have entered an email id and click on next
+    And I have entered password and click on  login
+
+
 
 
 

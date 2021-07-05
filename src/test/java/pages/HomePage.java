@@ -4,7 +4,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
 import stepDefinitions.TestSetupPage;
 
 public class HomePage extends TestSetupPage {
@@ -42,11 +41,18 @@ public class HomePage extends TestSetupPage {
     @FindBy(id = "email")
     WebElement emailID;
 
+    @FindBy(id = "password")
+    WebElement password;
+
     @FindBy(className = "invalid-feedback")
     WebElement errorAlert;
 
     @FindBy(xpath = "//a[contains(text(),'Next')]")
     WebElement next;
+
+    @FindBy(xpath = "//button[contains(text(),'Log In ')]")
+    WebElement login;
+
 
     @FindBy(xpath = "//a[contains(text(),'Home')]")
     WebElement home;
@@ -83,17 +89,17 @@ public class HomePage extends TestSetupPage {
     WebElement contactUs;
 
 
-    public void setDropMenu() {
-        Actions action = new Actions(driver);
-        action.moveToElement(industriesDropdown).perform();
-        constructionLink.click();
+    public HomePage() {
+        PageFactory.initElements(driver, this);
     }
 
 
     //=====================  constructor define ===============================
 
-    public HomePage() {
-        PageFactory.initElements(driver, this);
+    public void setDropMenu() {
+        Actions action = new Actions(driver);
+        action.moveToElement(industriesDropdown).perform();
+        constructionLink.click();
     }
 
     //========================= Custom Method declare for the steps =======================
@@ -107,10 +113,22 @@ public class HomePage extends TestSetupPage {
         return textDisplayed.getText();
     }
 
-    public void setSignInProcess() {
+    public void setSignIn() {
         signIn.click();
+        sleepFor(3);
+    }
+
+    public void setSignInProcess() {
         emailID.clear();
-        emailID.sendKeys("hasib@yopmail.com");
+        emailID.sendKeys("hasancse10@gmail.com");
+        next.click();
+        sleepFor(2);
+    }
+
+    public void setPassword() {
+        password.clear();
+        password.sendKeys("Hasib@2019@");
+        login.click();
     }
 
     public String loginNextProcess() {

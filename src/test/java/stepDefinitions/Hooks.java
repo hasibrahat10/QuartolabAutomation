@@ -20,9 +20,10 @@ public class Hooks extends TestSetupPage {
 
     @After
     public void tearDown(Scenario scenario) {
-        if(scenario.isFailed()){
-            FileHelper.take_screenshot();
-        }
+//        if (scenario.isFailed()) {
+//            FileHelper.take_screenshot();
+//        }
+        FileHelper.take_screenshot();
 
         stopDriver();
     }

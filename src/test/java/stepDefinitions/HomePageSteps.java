@@ -1,6 +1,9 @@
 package stepDefinitions;
 
-import io.cucumber.java.en.*;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
 import pages.HomePage;
 
@@ -22,7 +25,7 @@ public class HomePageSteps extends TestSetupPage {
     //====== Login Attempt to the Website ==============
     @Then("I click on sign in link")
     public void i_click_on_sign_in_link() {
-
+        new HomePage().setSignIn();
     }
 
     @When("I have entered an email id and click on next")
@@ -89,6 +92,12 @@ public class HomePageSteps extends TestSetupPage {
         HomePage homePage = new HomePage();
         homePage.setFormDetails();
         homePage.setCloseSuccess();
+    }
+
+
+    @And("I have entered password and click on  login")
+    public void iHaveEnteredPasswordAndClickOnLogin() {
+        new HomePage().setPassword();
     }
 
 
