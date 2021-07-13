@@ -1,9 +1,11 @@
-.idea/
-
+.idea
 target/
-pom.xml.tag
-pom.xml.next
 release.properties
 test-output/
-dependency-reduced-pom.xml
-results
+.idea/
+.DS_Store
+.idea/vcs.xml
+ screenshots/
+ out/
+
+QuartolabAutomation.iml

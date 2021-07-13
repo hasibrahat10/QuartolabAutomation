@@ -1,9 +1,10 @@
 package stepDefinitions;
 
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import org.junit.Assert;
 import pages.HomePage;
 
@@ -15,7 +16,7 @@ public class HomePageSteps extends TestSetupPage {
 
     }
 
-    @Then("I observed the text {string}")
+    @Then("I observed the text (.*)")
     public void i_observed_the_text(String expectedText) {
         sleepFor(3);
         Assert.assertEquals(expectedText, new HomePage().setTextDisplayed());
@@ -35,7 +36,7 @@ public class HomePageSteps extends TestSetupPage {
 
     }
 
-    @When("I get an error alert {string}")
+    @When("I get an error alert (.*)")
     public void i_get_an_error_alert(String text) {
 
         new HomePage().loginNextProcess();
@@ -95,7 +96,7 @@ public class HomePageSteps extends TestSetupPage {
     }
 
 
-    @And("I have entered password and click on  login")
+    @And("I have entered password and click on login")
     public void iHaveEnteredPasswordAndClickOnLogin() {
         new HomePage().setPassword();
     }

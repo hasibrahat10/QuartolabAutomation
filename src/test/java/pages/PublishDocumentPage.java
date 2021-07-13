@@ -6,10 +6,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import stepDefinitions.TestSetupPage;
 
-import java.awt.*;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
-
 public class PublishDocumentPage extends TestSetupPage {
 
     //========================= Simple Document Element Finder ============================== //
@@ -57,7 +53,7 @@ public class PublishDocumentPage extends TestSetupPage {
     @FindBy(xpath = "//input[@placeholder='Enter title']")
     WebElement visualDocTitle;
 
-//    @FindBy(xpath = "//*[contains(text(), 'Add Image')]")
+    //    @FindBy(xpath = "//*[contains(text(), 'Add Image')]")
     @FindBy(id = "img-doc")
     WebElement addImage; // single image
 

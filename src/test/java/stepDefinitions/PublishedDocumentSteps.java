@@ -1,7 +1,8 @@
 package stepDefinitions;
 
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Then;
+
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Then;
 import pages.HomePage;
 import pages.PublishDocumentPage;
 
@@ -15,7 +16,7 @@ public class PublishedDocumentSteps extends TestSetupPage {
         new PublishDocumentPage().setCreateIcon();
     }
 
-    @Then("I have select {string} options")
+    @Then("I have select (.*) options")
     public void iHaveSelectOptions(String options) {
         new PublishDocumentPage().selectCreateOptions(options);
     }
