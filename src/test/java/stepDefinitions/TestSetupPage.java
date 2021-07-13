@@ -1,6 +1,5 @@
 package stepDefinitions;
 
-import org.apache.commons.lang.RandomStringUtils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,11 +17,7 @@ public class TestSetupPage {
     protected static boolean REMOTE_TEST;
     private static DesiredCapabilities caps = new DesiredCapabilities();
 
-    //================   RANDOM STRING GENERATE  ========================
-    public static String randomString() {
-        String generatedString = RandomStringUtils.randomAlphabetic(5);
-        return (generatedString);
-    }
+
 
     public static void sleepFor(int seconds) {
         try {
