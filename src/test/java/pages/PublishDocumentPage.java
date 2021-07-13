@@ -6,6 +6,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import stepDefinitions.TestSetupPage;
 
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+
 public class PublishDocumentPage extends TestSetupPage {
 
     //========================= Simple Document Element Finder ============================== //
@@ -19,17 +23,18 @@ public class PublishDocumentPage extends TestSetupPage {
     WebElement simpleDocBtn;
 
     @FindBy(xpath = "//input[@placeholder='Enter title']")
-    WebElement docTitle;
+    WebElement simpleDocTitle;
 
     @FindBy(xpath = "//div[@class='fr-element fr-view']")
     WebElement docDescription;
 
+
+    //============================ Common Action for Publish Document Start ============================//
     @FindBy(xpath = "//div // a[@class='btn btn-light btn-with-icon w-100 cursor-pointer']")
     WebElement addCategoriesBtn;
 
     @FindBy(xpath = "//label[@class='form-check-label' and @for='normal docs track-12']")
     WebElement selectedCategory;
-
     @FindBy(xpath = "//button[contains(text(),'Done')]")
     WebElement categorySelectDone;
 
@@ -42,6 +47,33 @@ public class PublishDocumentPage extends TestSetupPage {
     @FindBy(xpath = "//button[contains(text(), 'BACK TO CONTENT MANAGER')]")
     WebElement backToContentMgr;
 
+    //============================ Common Action for Publish End============================//
+
+
+    //========================== Visual Doc Create Start ============================== //
+    @FindBy(xpath = "(//*[contains(text(), 'CREATE')])[3]")
+    WebElement visualDocBtn;
+
+    @FindBy(xpath = "//input[@placeholder='Enter title']")
+    WebElement visualDocTitle;
+
+//    @FindBy(xpath = "//*[contains(text(), 'Add Image')]")
+    @FindBy(id = "img-doc")
+    WebElement addImage; // single image
+
+
+    @FindBy(xpath = "//textarea[@class='form-control ng-untouched ng-pristine ng-valid']")
+    WebElement descriptionVisualDoc;
+
+
+    //========================== Multi Doc Create Start ============================== //
+    @FindBy(xpath = "((//*[contains(text(), 'CREATE')])[2]")
+    WebElement multiDocBtn;
+
+    //========================== Video Doc Create Start ============================== //
+
+    @FindBy(xpath = "((//*[contains(text(), 'CREATE')])[4]")
+    WebElement videoDocBtn;
 
     //========================= Constructor Define ============================== //
 
@@ -61,14 +93,14 @@ public class PublishDocumentPage extends TestSetupPage {
 //        createDocument.click();
     }
 
-    public void setSimpleDocBtn(){
+    public void setSimpleDocBtn() {
         simpleDocBtn.click();
     }
 
-    public void setDocInfo(){
-        docTitle.clear();
+    public void setDocInfo() {
+        simpleDocTitle.clear();
         sleepFor(2);
-        docTitle.sendKeys("Automation Title one");
+        simpleDocTitle.sendKeys("Automation Title one");
         docDescription.click();
         sleepFor(2);
         docDescription.sendKeys("Automation the industry's standard dummy text ever \n" +
@@ -78,7 +110,7 @@ public class PublishDocumentPage extends TestSetupPage {
         sleepFor(3);
     }
 
-    public void setPublishDocument(){
+    public void setPublishDocument() {
         addCategoriesBtn.click();
         sleepFor(2);
         selectedCategory.click();
@@ -90,4 +122,25 @@ public class PublishDocumentPage extends TestSetupPage {
         sleepFor(4);
 
     }
+
+
+    //=========================== Visual Doc Steps Define =================================== //
+    public void setVisualDocBtn() {
+        visualDocBtn.click();
+    }
+
+    public void visualDocInfo() {
+        visualDocTitle.clear();
+        visualDocTitle.sendKeys("Visual doc automation title sample");
+        sleepFor(2);
+        addImage.click();
+        addImage.sendKeys("C:\\Users\\u\\Downloads\\b.jpeg");
+
+        sleepFor(4);
+        descriptionVisualDoc.click();
+        sleepFor(2);
+        descriptionVisualDoc.sendKeys("Used to automate native windows related");
+    }
+
+
 }

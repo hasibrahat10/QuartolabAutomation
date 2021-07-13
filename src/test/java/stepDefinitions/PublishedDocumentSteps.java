@@ -34,4 +34,20 @@ public class PublishedDocumentSteps extends TestSetupPage {
     public void iHaveSelectCategoriesAndClickOnPublishDocument() {
         new PublishDocumentPage().setPublishDocument();
     }
+
+    @And("I have select visual document create options")
+    public void iHaveSelectVisualDocumentCreateOptions() {
+        new PublishDocumentPage().setVisualDocBtn();
+
+    }
+
+    @Then("I have entered visual doc title and other details")
+    public void iHaveEnteredVisualDocTitleAndOtherDetails() {
+        new PublishDocumentPage().visualDocInfo();
+    }
+
+    @And("I have select categories for visual and click on publish document")
+    public void iHaveSelectCategoriesForVisualAndClickOnPublishDocument() {
+        new PublishDocumentPage().setPublishDocument();
+    }
 }
