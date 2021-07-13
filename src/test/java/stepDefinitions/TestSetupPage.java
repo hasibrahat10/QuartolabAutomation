@@ -8,6 +8,8 @@ import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 
 public class TestSetupPage {
@@ -16,7 +18,6 @@ public class TestSetupPage {
     protected static String scenarioName;
     protected static boolean REMOTE_TEST;
     private static DesiredCapabilities caps = new DesiredCapabilities();
-
 
 
     public static void sleepFor(int seconds) {
@@ -48,12 +49,20 @@ public class TestSetupPage {
 
     //=================================   START DRIVER  =======================================
     public void startDriver() {
+        Map<String, Object> prefs = new HashMap<String, Object>();
+        prefs.put("credentials_enable_service", false);
+        prefs.put("profile.password_manager_enabled", false);
+
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--disable-notifications");
+        chromeOptions.setExperimentalOption("prefs", prefs);
+        chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"}); // chrome control text
+
         // set properties
         System.setProperty(ChromeDriverService.CHROME_DRIVER_EXE_PROPERTY, System.getProperty("user.dir") + "/drivers/chromedriver_win32/chromedriver.exe");
         System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true"); //selenium text ignore
         java.util.logging.Logger.getLogger("org.openqa.selenium").setLevel(Level.OFF);
 
-        ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--disable-notifications");
         chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"}); // chrome control text
         chromeOptions.addArguments("--ignore-certificate-errors");

@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = {"src/test/java/features"},
         tags = {"@visual-docPublish"},
-        glue = "stepDefinitions",
+        glue = {"stepDefinitions"},
         plugin = {"pretty", "html:test-output"}
 )
 public class TestRunner {

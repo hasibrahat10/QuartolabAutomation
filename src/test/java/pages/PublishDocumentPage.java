@@ -1,10 +1,11 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import stepDefinitions.TestSetupPage;
+
+import java.util.List;
 
 public class PublishDocumentPage extends TestSetupPage {
 
@@ -12,8 +13,11 @@ public class PublishDocumentPage extends TestSetupPage {
     @FindBy(xpath = "//i[@class='icon icon-create-v2 hvr-icon']")
     WebElement createIcon;
 
-    @FindBy(xpath = "//li // a[contains(text(), 'Create Document')]")
-    WebElement createDocument;
+//    @FindBy(xpath = "//li // a[contains(text(), 'Create Document')]")
+//    WebElement createDocument;
+
+    @FindBy(xpath = "//ul[@class='create-dropdown dropdown-nav show']/li")
+    List<WebElement> createOptions;
 
     @FindBy(xpath = "(//*[contains(text(), 'CREATE')])[1]")
     WebElement simpleDocBtn;
@@ -53,13 +57,15 @@ public class PublishDocumentPage extends TestSetupPage {
     @FindBy(xpath = "//input[@placeholder='Enter title']")
     WebElement visualDocTitle;
 
-    //    @FindBy(xpath = "//*[contains(text(), 'Add Image')]")
+    //  @FindBy(xpath = "//*[contains(text(), 'Add Image')]")
     @FindBy(id = "img-doc")
     WebElement addImage; // single image
 
-
-    @FindBy(xpath = "//textarea[@class='form-control ng-untouched ng-pristine ng-valid']")
+    @FindBy(xpath = "//textarea[@formcontrolname='imgdescription']")
     WebElement descriptionVisualDoc;
+//
+//    @FindBy(xpath = "//textarea[@class='form-control ng-untouched ng-pristine ng-valid']")
+//    WebElement descriptionVisualDoc;
 
 
     //========================== Multi Doc Create Start ============================== //
@@ -83,10 +89,20 @@ public class PublishDocumentPage extends TestSetupPage {
         createIcon.click();
     }
 
-    public void selectCreateOptions(String createOptions) {
+//    public void selectCreateOptions(String createOptions) {
 //Dynamic Xpath for the multiples item
-        driver.findElement(By.xpath("//li // a[contains(text(), '" + createOptions + "')]")).click();
-//        createDocument.click();
+//       driver.findElement(By.xpath("//li // a[contains(text(), '" + createOptions + "')]")).click();
+//       createDocument.click();
+//    }
+
+    public void selectCreateOptions(String option) {
+        for (WebElement element : createOptions) {
+            if (element.getText().equalsIgnoreCase(option)) {
+                element.click();
+                break;
+            }
+        }
+        sleepFor(10);
     }
 
     public void setSimpleDocBtn() {
@@ -121,22 +137,39 @@ public class PublishDocumentPage extends TestSetupPage {
 
 
     //=========================== Visual Doc Steps Define =================================== //
+
     public void setVisualDocBtn() {
         visualDocBtn.click();
+        sleepFor(5);
     }
+
+//    public void visualDocInfo() {
+//        visualDocTitle.clear();
+//        visualDocTitle.sendKeys("Visual doc automation title sample");
+//        sleepFor(2);
+//        addImage.click();
+//        addImage.sendKeys("C:\\Users\\u\\Downloads\\b.jpeg");
+//
+//        sleepFor(4);
+//        descriptionVisualDoc.click();
+//        sleepFor(2);
+//        descriptionVisualDoc.sendKeys("Used to automate native windows related");
+//    }
 
     public void visualDocInfo() {
         visualDocTitle.clear();
         visualDocTitle.sendKeys("Visual doc automation title sample");
         sleepFor(2);
-        addImage.click();
-        addImage.sendKeys("C:\\Users\\u\\Downloads\\b.jpeg");
 
-        sleepFor(4);
-        descriptionVisualDoc.click();
+        String imageDir = System.getProperty("user.dir") + "/images/";
+        String[] images = new String[]{"qdev.PNG", "test.jpg"};
+        for (String image : images) {
+            addImage.sendKeys(imageDir + image);
+            sleepFor(15);
+        }
+
         sleepFor(2);
         descriptionVisualDoc.sendKeys("Used to automate native windows related");
     }
-
 
 }

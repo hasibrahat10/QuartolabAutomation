@@ -16,9 +16,9 @@ public class PublishedDocumentSteps extends TestSetupPage {
         new PublishDocumentPage().setCreateIcon();
     }
 
-    @Then("I have select (.*) options")
-    public void iHaveSelectOptions(String options) {
-        new PublishDocumentPage().selectCreateOptions(options);
+    @Then("I select (.*) option")
+    public void iSelectOption(String option) {
+        new PublishDocumentPage().selectCreateOptions(option);
     }
 
     @And("I have select simple document create options")
