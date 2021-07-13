@@ -1,10 +1,10 @@
 package pages;
 
+import helper.FileHelper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import stepDefinitions.TestSetupPage;
-
 import java.util.List;
 
 public class PublishDocumentPage extends TestSetupPage {
@@ -161,10 +161,10 @@ public class PublishDocumentPage extends TestSetupPage {
         visualDocTitle.sendKeys("Visual doc automation title sample");
         sleepFor(2);
 
-        String imageDir = System.getProperty("user.dir") + "/images/";
+
         String[] images = new String[]{"qdev.PNG", "test.jpg"};
         for (String image : images) {
-            addImage.sendKeys(imageDir + image);
+            addImage.sendKeys( FileHelper.IMAGES_DIR + image);
             sleepFor(15);
         }
 

@@ -7,7 +7,7 @@ formatter.feature({
   "keyword": "Feature"
 });
 formatter.before({
-  "duration": 11358538700,
+  "duration": 20558623700,
   "status": "passed"
 });
 formatter.background({
@@ -26,7 +26,7 @@ formatter.match({
   "location": "HomePageSteps.iClickOnAcceptCookiesButton()"
 });
 formatter.result({
-  "duration": 12240830600,
+  "duration": 12463102100,
   "status": "passed"
 });
 formatter.scenario({
@@ -72,7 +72,7 @@ formatter.match({
   "location": "PublishedDocumentSteps.iClickOnCreateIcon()"
 });
 formatter.result({
-  "duration": 105304052400,
+  "duration": 125794191700,
   "status": "passed"
 });
 formatter.match({
@@ -85,32 +85,32 @@ formatter.match({
   "location": "PublishedDocumentSteps.iSelectOption(String)"
 });
 formatter.result({
-  "duration": 10505803100,
+  "duration": 10278678100,
   "status": "passed"
 });
 formatter.match({
   "location": "PublishedDocumentSteps.iHaveSelectVisualDocumentCreateOptions()"
 });
 formatter.result({
-  "duration": 5209831500,
+  "duration": 5205040100,
   "status": "passed"
 });
 formatter.match({
   "location": "PublishedDocumentSteps.iHaveEnteredVisualDocTitleAndOtherDetails()"
 });
 formatter.result({
-  "duration": 34748274100,
+  "duration": 34748268000,
   "status": "passed"
 });
 formatter.match({
   "location": "PublishedDocumentSteps.iHaveSelectCategoriesForVisualAndClickOnPublishDocument()"
 });
 formatter.result({
-  "duration": 9480442500,
+  "duration": 9299162100,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1053298200,
+  "duration": 946521200,
   "status": "passed"
 });
 });
