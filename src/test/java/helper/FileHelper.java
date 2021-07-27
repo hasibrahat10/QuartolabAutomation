@@ -13,6 +13,7 @@ import java.util.GregorianCalendar;
 public class FileHelper extends TestSetupPage {
     public static String CURRENT_DIR = System.getProperty("user.dir");
     public static final String IMAGES_DIR = CURRENT_DIR + "/images/";
+    public static final String VIDEOS_DIR = CURRENT_DIR + "/videos/";
     public static String SCREENSHOT_DIR = CURRENT_DIR + "/target/screenshot/";
 
     public static String DATA_FOLDER = CURRENT_DIR + "/data/";

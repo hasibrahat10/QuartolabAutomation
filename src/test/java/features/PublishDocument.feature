@@ -20,4 +20,13 @@ Feature: Quarto Landing Page
     Then I have entered visual doc title and other details
     And I have select categories for visual and click on publish document
 
+  @video-docPublish
+  Scenario: I want to publish a video document
+    Given I click on create icon
+    When I click on "Create or Upload Video" text
+    Then I have entered the video info and details
+    And I have selected the categories and published video document
+
+
+
 

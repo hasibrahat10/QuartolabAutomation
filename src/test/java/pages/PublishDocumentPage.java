@@ -1,10 +1,13 @@
 package pages;
 
+import com.github.javafaker.Faker;
 import helper.FileHelper;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import stepDefinitions.TestSetupPage;
+
 import java.util.List;
 
 public class PublishDocumentPage extends TestSetupPage {
@@ -27,7 +30,6 @@ public class PublishDocumentPage extends TestSetupPage {
 
     @FindBy(xpath = "//div[@class='fr-element fr-view']")
     WebElement docDescription;
-
 
     //============================ Common Action for Publish Document Start ============================//
     @FindBy(xpath = "//div // a[@class='btn btn-light btn-with-icon w-100 cursor-pointer']")
@@ -76,6 +78,21 @@ public class PublishDocumentPage extends TestSetupPage {
 
     @FindBy(xpath = "((//*[contains(text(), 'CREATE')])[4]")
     WebElement videoDocBtn;
+    @FindBy(xpath = "((//*[contains(text(), 'Create or Upload Video')])")
+    WebElement createVideo;
+
+    @FindBy(id = "title")
+    WebElement videoTitle;
+    @FindBy(xpath = "//span[contains(text(),'Browse Files')]")
+    WebElement videoFileBrowse;
+
+    @FindBy(xpath = "//label[contains(text(), 'Insert YouTube Video Link')] ")
+    WebElement youtubeVidLink;
+    // https://www.youtube.com/watch?v=4F6yNyyftRg ---------- youtube link text
+
+    @FindBy(xpath = "//div [@class='fr-element fr-view']")
+    WebElement videoDescription;
+
 
     //========================= Constructor Define ============================== //
 
@@ -89,12 +106,6 @@ public class PublishDocumentPage extends TestSetupPage {
         createIcon.click();
     }
 
-//    public void selectCreateOptions(String createOptions) {
-//Dynamic Xpath for the multiples item
-//       driver.findElement(By.xpath("//li // a[contains(text(), '" + createOptions + "')]")).click();
-//       createDocument.click();
-//    }
-
     public void selectCreateOptions(String option) {
         for (WebElement element : createOptions) {
             if (element.getText().equalsIgnoreCase(option)) {
@@ -102,7 +113,7 @@ public class PublishDocumentPage extends TestSetupPage {
                 break;
             }
         }
-        sleepFor(10);
+        sleepFor(15);
     }
 
     public void setSimpleDocBtn() {
@@ -143,33 +154,41 @@ public class PublishDocumentPage extends TestSetupPage {
         sleepFor(5);
     }
 
-//    public void visualDocInfo() {
-//        visualDocTitle.clear();
-//        visualDocTitle.sendKeys("Visual doc automation title sample");
-//        sleepFor(2);
-//        addImage.click();
-//        addImage.sendKeys("C:\\Users\\u\\Downloads\\b.jpeg");
-//
-//        sleepFor(4);
-//        descriptionVisualDoc.click();
-//        sleepFor(2);
-//        descriptionVisualDoc.sendKeys("Used to automate native windows related");
-//    }
 
     public void visualDocInfo() {
         visualDocTitle.clear();
         visualDocTitle.sendKeys("Visual doc automation title sample");
         sleepFor(2);
-
-
         String[] images = new String[]{"qdev.PNG", "test.jpg"};
         for (String image : images) {
-            addImage.sendKeys( FileHelper.IMAGES_DIR + image);
+            addImage.sendKeys(FileHelper.IMAGES_DIR + image);
             sleepFor(15);
         }
 
         sleepFor(2);
         descriptionVisualDoc.sendKeys("Used to automate native windows related");
     }
+
+    //=========================== Video Doc Steps Define =================================== //
+
+    public void selectVideo(String createOptions) {
+        driver.findElement(By.xpath("//li // a[contains(text(), '" + createOptions + "')]")).click();
+
+    }
+
+    public void videoInfo() {
+        videoTitle.click();
+        videoTitle.sendKeys("Title" + new Faker().name().fullName());
+//        videoFileBrowse.sendKeys("D:\\Testing Issues Data\\OneDrive - Red Lime Solutions\\Test_Data\\sample_Video\\3");
+        String[] videos = new String[]{"vid1.mp4"};
+        for (String video : videos) {
+            videoFileBrowse.sendKeys(FileHelper.VIDEOS_DIR + video);
+            sleepFor(15);
+        }
+        sleepFor(15);
+        videoDescription.click();
+        videoDescription.sendKeys("Description of video" + new Faker().lorem());
+    }
+
 
 }

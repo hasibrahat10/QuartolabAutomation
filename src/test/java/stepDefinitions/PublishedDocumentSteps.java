@@ -1,8 +1,9 @@
 package stepDefinitions;
 
 
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Then;
+import cucumber.api.PendingException;
+import cucumber.api.java.en.*;
+
 import pages.HomePage;
 import pages.PublishDocumentPage;
 
@@ -16,6 +17,7 @@ public class PublishedDocumentSteps extends TestSetupPage {
         new PublishDocumentPage().setCreateIcon();
     }
 
+    // common steps for dropdown list for create section
     @Then("I select (.*) option")
     public void iSelectOption(String option) {
         new PublishDocumentPage().selectCreateOptions(option);
@@ -51,4 +53,23 @@ public class PublishedDocumentSteps extends TestSetupPage {
     public void iHaveSelectCategoriesForVisualAndClickOnPublishDocument() {
         new PublishDocumentPage().setPublishDocument();
     }
+
+
+    @When("^I click on \"([^\"]*)\" text$")
+    public void iClickOnText(String option)  {
+        new PublishDocumentPage().selectVideo(option);
+    }
+
+
+    @Then("^I have entered the video info and details$")
+    public void iHaveEnteredTheVideoInfoAndDetails() {
+        new PublishDocumentPage().videoInfo();
+    }
+
+    @And("^I have selected the categories and published video document$")
+    public void iHaveSelectedTheCategoriesAndPublishedVideoDocument() {
+        new PublishDocumentPage().setPublishDocument();
+
+    }
+
 }
