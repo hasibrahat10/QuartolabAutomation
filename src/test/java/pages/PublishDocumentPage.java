@@ -71,8 +71,21 @@ public class PublishDocumentPage extends TestSetupPage {
 
 
     //========================== Multi Doc Create Start ============================== //
-    @FindBy(xpath = "((//*[contains(text(), 'CREATE')])[2]")
+    @FindBy(xpath = "(//button[@class='btn btn-md btn-secondary ml-auto'])[2]")
     WebElement multiDocBtn;
+
+    @FindBy(id = "docTitle")
+    WebElement multiDocTitle;
+
+    @FindBy(xpath = "//input[@placeholder='Add section']")
+    WebElement inputSectionName;
+
+    @FindBy(xpath = "(//button[@class='btn btn-primary btn-with-icon'])[1]")
+    WebElement sectionAdd;
+
+    @FindBy(xpath = "//div[@class='fr-element fr-view']")
+    WebElement multiDocDescription;
+
 
     //========================== Video Doc Create Start ============================== //
 
@@ -123,12 +136,10 @@ public class PublishDocumentPage extends TestSetupPage {
     public void setDocInfo() {
         simpleDocTitle.clear();
         sleepFor(2);
-        simpleDocTitle.sendKeys("Automation Title one");
+        simpleDocTitle.sendKeys(" Title"  + new Faker().name().fullName());
         docDescription.click();
         sleepFor(2);
-        docDescription.sendKeys("Automation the industry's standard dummy text ever \n" +
-                "since the 1500s, when an unknown printer took a galley of type and " +
-                "scrambled it to make a type speciman.\n");
+        docDescription.sendKeys("Automation" +  new Faker().lorem());
 
         sleepFor(3);
     }
@@ -141,8 +152,9 @@ public class PublishDocumentPage extends TestSetupPage {
         publishDoc.click();
         sleepFor(2);
         confirmYes.click();
-        backToContentMgr.click();
         sleepFor(4);
+        backToContentMgr.click();
+      
 
     }
 
@@ -169,6 +181,36 @@ public class PublishDocumentPage extends TestSetupPage {
         descriptionVisualDoc.sendKeys("Used to automate native windows related");
     }
 
+
+    //========================Steps define for multi section document Start============================ //
+    public void clickCreateDoc(String createOptions) {
+        driver.findElement(By.xpath("//li // a[contains(text(), '" + createOptions + "')]")).click();
+
+    }
+
+    public void setMultiDocBtn() {
+        multiDocBtn.click();
+    }
+
+    public void setMultiDocInfo() {
+
+        multiDocTitle.click();
+        multiDocTitle.sendKeys("title of" + new Faker().name().title());
+        sleepFor(2);
+
+        inputSectionName.click();
+        inputSectionName.sendKeys("Section" + new Faker().number().digits(2));
+        sectionAdd.click();
+        sleepFor(2);
+        multiDocDescription.click();
+        multiDocDescription.sendKeys("description doc " + new Faker().lorem());
+
+
+    }
+
+    //========================= Steps define for multi section document End ============================== //
+
+
     //=========================== Video Doc Steps Define =================================== //
 
     public void selectVideo(String createOptions) {
@@ -186,7 +228,6 @@ public class PublishDocumentPage extends TestSetupPage {
         for (String video : videos) {
             videoFileBrowse.sendKeys(FileHelper.VIDEOS_DIR + video);
             sleepFor(15);
-
         }
         sleepFor(15);
         videoDescription.click();

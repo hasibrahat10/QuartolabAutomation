@@ -2,8 +2,9 @@ package stepDefinitions;
 
 
 import cucumber.api.PendingException;
-import cucumber.api.java.en.*;
-
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import pages.HomePage;
 import pages.PublishDocumentPage;
 
@@ -56,7 +57,7 @@ public class PublishedDocumentSteps extends TestSetupPage {
 
 
     @When("^I click on \"([^\"]*)\" text$")
-    public void iClickOnText(String option)  {
+    public void iClickOnText(String option) {
         new PublishDocumentPage().selectVideo(option);
     }
 
@@ -71,5 +72,26 @@ public class PublishedDocumentSteps extends TestSetupPage {
         new PublishDocumentPage().setPublishDocument();
 
     }
+    @When("^I click on \"([^\"]*)\" option$")
+    public void iClickOnOption(String option)  {
+        new PublishDocumentPage().clickCreateDoc(option);
+
+    }
+    @And("^I have select multi section document options$")
+    public void iHaveSelectMultiSectionDocumentOptions() {
+        new PublishDocumentPage().setMultiDocBtn();
+    }
+
+    @Then("^I have entered multi section doc title and other details$")
+    public void iHaveEnteredMultiSectionDocTitleAndOtherDetails() {
+        new PublishDocumentPage().setMultiDocInfo();
+
+    }
+
+    @And("^I have select categories for multi section and click on publish document$")
+    public void iHaveSelectCategoriesForMultiSectionAndClickOnPublishDocument() {
+        new PublishDocumentPage().setPublishDocument();
+    }
+
 
 }
