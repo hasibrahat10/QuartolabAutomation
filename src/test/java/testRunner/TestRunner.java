@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = {"src/test/java/features"},
-        tags = {"@simple-docPublish"},
+        tags = {" @video-docPublish"},
         glue = {"stepDefinitions"},
         plugin = {"pretty", "html:test-output"}
 )

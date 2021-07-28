@@ -23,7 +23,7 @@ Feature: Quarto Landing Page
   Scenario: I want to publish a video document
     When I click on "Create or Upload Video" text
     Then I have entered the video info and details
-    And I have selected the categories and published video document
+    And I select the categories and published video document
 
   @multiSection-docPublish
   Scenario:  I want to publish a multi section document

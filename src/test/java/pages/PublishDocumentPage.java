@@ -31,7 +31,9 @@ public class PublishDocumentPage extends TestSetupPage {
     @FindBy(xpath = "//div[@class='fr-element fr-view']")
     WebElement docDescription;
 
-    //============================ Common Action for Publish Document Start ============================//
+    /*
+    Common element for publish document
+     */
     @FindBy(xpath = "//div // a[@class='btn btn-light btn-with-icon w-100 cursor-pointer']")
     WebElement addCategoriesBtn;
 
@@ -45,32 +47,20 @@ public class PublishDocumentPage extends TestSetupPage {
 
     @FindBy(xpath = "//button[contains(text(), 'Yes')]")
     WebElement confirmYes;
-
     @FindBy(xpath = "//button[contains(text(), 'BACK TO CONTENT MANAGER')]")
     WebElement backToContentMgr;
-
-    //============================ Common Action for Publish End============================//
-
-
-    //========================== Visual Doc Create Start ============================== //
     @FindBy(xpath = "(//*[contains(text(), 'CREATE')])[3]")
     WebElement visualDocBtn;
-
     @FindBy(xpath = "//input[@placeholder='Enter title']")
     WebElement visualDocTitle;
-
     //  @FindBy(xpath = "//*[contains(text(), 'Add Image')]")
     @FindBy(id = "img-doc")
     WebElement addImage; // single image
-
     @FindBy(xpath = "//textarea[@formcontrolname='imgdescription']")
     WebElement descriptionVisualDoc;
 //
 //    @FindBy(xpath = "//textarea[@class='form-control ng-untouched ng-pristine ng-valid']")
 //    WebElement descriptionVisualDoc;
-
-
-    //========================== Multi Doc Create Start ============================== //
     @FindBy(xpath = "(//button[@class='btn btn-md btn-secondary ml-auto'])[2]")
     WebElement multiDocBtn;
 
@@ -86,6 +76,8 @@ public class PublishDocumentPage extends TestSetupPage {
     @FindBy(xpath = "//div[@class='fr-element fr-view']")
     WebElement multiDocDescription;
 
+    @FindBy(xpath = "//input[@type='checkbox']")
+    List<WebElement> categories;
 
     //========================== Video Doc Create Start ============================== //
 
@@ -96,8 +88,13 @@ public class PublishDocumentPage extends TestSetupPage {
 
     @FindBy(id = "title")
     WebElement videoTitle;
-    @FindBy(xpath = "//div[@class='dz-text']")
+
+
+    @FindBy(xpath = "//input[@type='file']")
     WebElement videoFileBrowse;
+
+    @FindBy(xpath = "//*[@class='dz-upload' and @style='width: 100%;']")
+    WebElement uploadProgressBar;
 
     @FindBy(xpath = "//label[contains(text(), 'Insert YouTube Video Link')] ")
     WebElement youtubeVidLink;
@@ -136,11 +133,10 @@ public class PublishDocumentPage extends TestSetupPage {
     public void setDocInfo() {
         simpleDocTitle.clear();
         sleepFor(2);
-        simpleDocTitle.sendKeys(" Title"  + new Faker().name().fullName());
+        simpleDocTitle.sendKeys(" Title" + new Faker().name().fullName());
         docDescription.click();
         sleepFor(2);
-        docDescription.sendKeys("Automation" +  new Faker().lorem());
-
+        docDescription.sendKeys("Automation" + new Faker().lorem());
         sleepFor(3);
     }
 
@@ -148,14 +144,24 @@ public class PublishDocumentPage extends TestSetupPage {
         addCategoriesBtn.click();
         sleepFor(2);
         selectedCategory.click();
+//        selectCategory("Normal docs track");
         categorySelectDone.click();
         publishDoc.click();
         sleepFor(2);
         confirmYes.click();
         sleepFor(4);
         backToContentMgr.click();
-      
+    }
 
+    public void videoPublished() {
+
+        selectCategory("Normal docs track");
+        categorySelectDone.click();
+        publishDoc.click();
+        sleepFor(2);
+        confirmYes.click();
+        sleepFor(4);
+        backToContentMgr.click();
     }
 
 
@@ -221,17 +227,29 @@ public class PublishDocumentPage extends TestSetupPage {
     public void videoInfo() {
         videoTitle.click();
         videoTitle.sendKeys("Title" + new Faker().name().fullName());
-//        videoFileBrowse.sendKeys("D:\\Testing Issues Data\\OneDrive - Red Lime Solutions\\Test_Data\\sample_Video\\3");
-        String[] videos = new String[]{"vid1.mp4"};
-        System.out.println(FileHelper.VIDEOS_DIR);
-        System.out.println(videoFileBrowse.getText());
+        String[] videos = new String[]{"vide1.mp4"};
         for (String video : videos) {
             videoFileBrowse.sendKeys(FileHelper.VIDEOS_DIR + video);
-            sleepFor(15);
+            waitForVisibility(uploadProgressBar);
         }
-        sleepFor(15);
-        videoDescription.click();
-        videoDescription.sendKeys("Description of video" + new Faker().lorem());
+        scrollDownToElement(videoDescription);
+        videoDescription.sendKeys("Description of video " + new Faker().lorem().paragraph());
+    }
+
+    /**
+     * Dynamic select category
+     *
+     * @param category Your expected category name
+     */
+    public void selectCategory(String category) {
+        scrollTop();
+        for (WebElement element : categories) {
+            System.out.println(element.getAttribute("id"));
+            if (element.getAttribute("id").contains(category.toLowerCase())) {
+                element.click();
+                break;
+            }
+        }
     }
 
 
