@@ -83,7 +83,7 @@ public class PublishDocumentPage extends TestSetupPage {
 
     @FindBy(id = "title")
     WebElement videoTitle;
-    @FindBy(xpath = "//span[contains(text(),'Browse Files')]")
+    @FindBy(xpath = "//div[@class='dz-text']")
     WebElement videoFileBrowse;
 
     @FindBy(xpath = "//label[contains(text(), 'Insert YouTube Video Link')] ")
@@ -181,9 +181,12 @@ public class PublishDocumentPage extends TestSetupPage {
         videoTitle.sendKeys("Title" + new Faker().name().fullName());
 //        videoFileBrowse.sendKeys("D:\\Testing Issues Data\\OneDrive - Red Lime Solutions\\Test_Data\\sample_Video\\3");
         String[] videos = new String[]{"vid1.mp4"};
+        System.out.println(FileHelper.VIDEOS_DIR);
+        System.out.println(videoFileBrowse.getText());
         for (String video : videos) {
             videoFileBrowse.sendKeys(FileHelper.VIDEOS_DIR + video);
             sleepFor(15);
+
         }
         sleepFor(15);
         videoDescription.click();
