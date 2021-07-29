@@ -8,6 +8,9 @@ import pages.HomePage;
 import pages.PublishDocumentPage;
 
 public class PublishedDocumentSteps extends TestSetupPage {
+    /**
+     * Set create icon for all the create document option with login
+     */
     @Then("I click on create icon")
     public void iClickOnCreateIcon() {
         HomePage homePage = new HomePage();
@@ -17,7 +20,10 @@ public class PublishedDocumentSteps extends TestSetupPage {
         new PublishDocumentPage().setCreateIcon();
     }
 
-    // common steps for dropdown list for create section
+    /**
+     * Common steps for create options
+     * @param option
+     */
     @Then("I select (.*) option")
     public void iSelectOption(String option) {
         new PublishDocumentPage().selectCreateOptions(option);
@@ -54,12 +60,10 @@ public class PublishedDocumentSteps extends TestSetupPage {
         new PublishDocumentPage().setPublishDocument();
     }
 
-
     @When("^I click on \"([^\"]*)\" text$")
     public void iClickOnText(String option) {
         new PublishDocumentPage().selectVideo(option);
     }
-
 
     @Then("^I have entered the video info and details$")
     public void iHaveEnteredTheVideoInfoAndDetails() {
@@ -69,13 +73,11 @@ public class PublishedDocumentSteps extends TestSetupPage {
     @And("^I have selected the categories and published video document$")
     public void iHaveSelectedTheCategoriesAndPublishedVideoDocument() {
         new PublishDocumentPage().setPublishDocument();
-
     }
 
     @When("^I click on \"([^\"]*)\" option$")
     public void iClickOnOption(String option) {
         new PublishDocumentPage().clickCreateDoc(option);
-
     }
 
     @And("^I have select multi section document options$")
@@ -86,14 +88,12 @@ public class PublishedDocumentSteps extends TestSetupPage {
     @Then("^I have entered multi section doc title and other details$")
     public void iHaveEnteredMultiSectionDocTitleAndOtherDetails() {
         new PublishDocumentPage().setMultiDocInfo();
-
     }
 
     @And("^I have select categories for multi section and click on publish document$")
     public void iHaveSelectCategoriesForMultiSectionAndClickOnPublishDocument() {
         new PublishDocumentPage().setPublishDocument();
     }
-
 
     @And("^I select the categories and published video document$")
     public void iSelectTheCategoriesAndPublishedVideoDocument() {

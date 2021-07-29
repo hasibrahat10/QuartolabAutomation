@@ -7,28 +7,16 @@ import org.openqa.selenium.support.PageFactory;
 import stepDefinitions.TestSetupPage;
 
 public class HomePage extends TestSetupPage {
-
-    // ===================  To Find the Elements for the Home Page ===========================
-
-
     @FindBy(xpath = "//button[contains(text(),'Accept')]")
     WebElement cookiesAccept;
-
     @FindBy(xpath = "//a[contains(text(),'features')]")
     WebElement features;
-
     @FindBy(xpath = "//a[contains(text(),'pricing')]")
     WebElement pricing;
-
-
     @FindBy(xpath = "//img[@class='light']")
     WebElement logoImg;
-
-
     @FindBy(xpath = "//h2[contains(text(),'quarto features')]")
     WebElement textDisplayed;
-
-
     @FindBy(xpath = "//a[contains(text(),'industries ')]")
     WebElement industriesDropdown;
 

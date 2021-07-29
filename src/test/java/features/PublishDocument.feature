@@ -11,7 +11,6 @@ Feature: Quarto Landing Page
     Then I have entered document title and description
     And I have select categories and click on publish document
 
-
   @visual-docPublish
   Scenario: I want to publish a visual document
     When I select CREATE DOCUMENT option

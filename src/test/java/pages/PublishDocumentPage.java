@@ -11,111 +11,90 @@ import stepDefinitions.TestSetupPage;
 import java.util.List;
 
 public class PublishDocumentPage extends TestSetupPage {
-
-    //========================= Simple Document Element Finder ============================== //
     @FindBy(xpath = "//i[@class='icon icon-create-v2 hvr-icon']")
-    WebElement createIcon;
-
-//    @FindBy(xpath = "//li // a[contains(text(), 'Create Document')]")
+    private WebElement createIcon;
+    //    @FindBy(xpath = "//li // a[contains(text(), 'Create Document')]")
 //    WebElement createDocument;
-
     @FindBy(xpath = "//ul[@class='create-dropdown dropdown-nav show']/li")
-    List<WebElement> createOptions;
-
+    private List<WebElement> createOptions;
     @FindBy(xpath = "(//*[contains(text(), 'CREATE')])[1]")
-    WebElement simpleDocBtn;
-
+    private WebElement simpleDocBtn;
     @FindBy(xpath = "//input[@placeholder='Enter title']")
-    WebElement simpleDocTitle;
-
+    private WebElement simpleDocTitle;
     @FindBy(xpath = "//div[@class='fr-element fr-view']")
-    WebElement docDescription;
+    private WebElement docDescription;
 
-    /*
-    Common element for publish document
-     */
     @FindBy(xpath = "//div // a[@class='btn btn-light btn-with-icon w-100 cursor-pointer']")
-    WebElement addCategoriesBtn;
-
+    private WebElement addCategoriesBtn;
     @FindBy(xpath = "//label[@class='form-check-label' and @for='normal docs track-12']")
-    WebElement selectedCategory;
+    private WebElement selectedCategory;
     @FindBy(xpath = "//button[contains(text(),'Done')]")
-    WebElement categorySelectDone;
-
+    private WebElement categorySelectDone;
     @FindBy(xpath = "//button[contains(text(), ' Publish Document ')]")
-    WebElement publishDoc;
-
+    private WebElement publishDoc;
     @FindBy(xpath = "//button[contains(text(), 'Yes')]")
-    WebElement confirmYes;
+    private WebElement confirmYes;
     @FindBy(xpath = "//button[contains(text(), 'BACK TO CONTENT MANAGER')]")
-    WebElement backToContentMgr;
+    private WebElement backToContentMgr;
+
     @FindBy(xpath = "(//*[contains(text(), 'CREATE')])[3]")
-    WebElement visualDocBtn;
+    private WebElement visualDocBtn;
     @FindBy(xpath = "//input[@placeholder='Enter title']")
-    WebElement visualDocTitle;
+    private WebElement visualDocTitle;
     //  @FindBy(xpath = "//*[contains(text(), 'Add Image')]")
     @FindBy(id = "img-doc")
-    WebElement addImage; // single image
+    private WebElement addImage; // single image
     @FindBy(xpath = "//textarea[@formcontrolname='imgdescription']")
-    WebElement descriptionVisualDoc;
-//
-//    @FindBy(xpath = "//textarea[@class='form-control ng-untouched ng-pristine ng-valid']")
+    private WebElement descriptionVisualDoc;
+    //    @FindBy(xpath = "//textarea[@class='form-control ng-untouched ng-pristine ng-valid']")
 //    WebElement descriptionVisualDoc;
+
     @FindBy(xpath = "(//button[@class='btn btn-md btn-secondary ml-auto'])[2]")
-    WebElement multiDocBtn;
-
+    private WebElement multiDocBtn;
     @FindBy(id = "docTitle")
-    WebElement multiDocTitle;
-
+    private WebElement multiDocTitle;
     @FindBy(xpath = "//input[@placeholder='Add section']")
-    WebElement inputSectionName;
-
+    private WebElement inputSectionName;
     @FindBy(xpath = "(//button[@class='btn btn-primary btn-with-icon'])[1]")
-    WebElement sectionAdd;
-
+    private WebElement sectionAdd;
     @FindBy(xpath = "//div[@class='fr-element fr-view']")
-    WebElement multiDocDescription;
+    private WebElement multiDocDescription;
 
     @FindBy(xpath = "//input[@type='checkbox']")
-    List<WebElement> categories;
-
-    //========================== Video Doc Create Start ============================== //
-
+    private List<WebElement> categories;
     @FindBy(xpath = "((//*[contains(text(), 'CREATE')])[4]")
-    WebElement videoDocBtn;
+    private WebElement videoDocBtn;
     @FindBy(xpath = "((//*[contains(text(), 'Create or Upload Video')])")
-    WebElement createVideo;
-
+    private WebElement createVideo;
     @FindBy(id = "title")
-    WebElement videoTitle;
-
-
+    private WebElement videoTitle;
     @FindBy(xpath = "//input[@type='file']")
-    WebElement videoFileBrowse;
-
+    private WebElement videoFileBrowse;
     @FindBy(xpath = "//*[@class='dz-upload' and @style='width: 100%;']")
-    WebElement uploadProgressBar;
-
+    private WebElement uploadProgressBar;
     @FindBy(xpath = "//label[contains(text(), 'Insert YouTube Video Link')] ")
-    WebElement youtubeVidLink;
+    private WebElement youtubeVidLink;
     // https://www.youtube.com/watch?v=4F6yNyyftRg ---------- youtube link text
-
     @FindBy(xpath = "//div [@class='fr-element fr-view']")
-    WebElement videoDescription;
+    private WebElement videoDescription;
 
-
-    //========================= Constructor Define ============================== //
 
     public PublishDocumentPage() {
         PageFactory.initElements(driver, this);
     }
 
-    //========================= Custom Method to Step Define ============================== //
-
+    /**
+     * Common create Icon for create documents
+     */
     public void setCreateIcon() {
         createIcon.click();
     }
 
+    /**
+     * Create options for different items
+     *
+     * @param option
+     */
     public void selectCreateOptions(String option) {
         for (WebElement element : createOptions) {
             if (element.getText().equalsIgnoreCase(option)) {
@@ -132,14 +111,16 @@ public class PublishDocumentPage extends TestSetupPage {
 
     public void setDocInfo() {
         simpleDocTitle.clear();
-        sleepFor(2);
+        waitForVisibility(simpleDocBtn);
         simpleDocTitle.sendKeys(" Title" + new Faker().name().fullName());
         docDescription.click();
-        sleepFor(2);
-        docDescription.sendKeys("Automation" + new Faker().lorem());
-        sleepFor(3);
+        docDescription.sendKeys("Automation" + new Faker().lorem().paragraph());
+        waitForVisibility(docDescription);
     }
 
+    /**
+     * Publish document process followed for all kinds of doc
+     */
     public void setPublishDocument() {
         addCategoriesBtn.click();
         sleepFor(2);
@@ -153,8 +134,10 @@ public class PublishDocumentPage extends TestSetupPage {
         backToContentMgr.click();
     }
 
+    /**
+     * Video document published
+     */
     public void videoPublished() {
-
         selectCategory("Normal docs track");
         categorySelectDone.click();
         publishDoc.click();
@@ -164,34 +147,34 @@ public class PublishDocumentPage extends TestSetupPage {
         backToContentMgr.click();
     }
 
-
-    //=========================== Visual Doc Steps Define =================================== //
-
+    /**
+     * Visual Document published
+     */
     public void setVisualDocBtn() {
         visualDocBtn.click();
         sleepFor(5);
     }
 
-
     public void visualDocInfo() {
         visualDocTitle.clear();
         visualDocTitle.sendKeys("Visual doc automation title sample");
-        sleepFor(2);
+        waitForVisibility(visualDocTitle);
         String[] images = new String[]{"qdev.PNG", "test.jpg"};
         for (String image : images) {
             addImage.sendKeys(FileHelper.IMAGES_DIR + image);
-            sleepFor(15);
+            waitForVisibility(addImage);
         }
-
-        sleepFor(2);
-        descriptionVisualDoc.sendKeys("Used to automate native windows related");
+        descriptionVisualDoc.sendKeys("Used to automate native" + new Faker().lorem().paragraph());
     }
 
-
-    //========================Steps define for multi section document Start============================ //
+    /**
+     * Multi section document published
+     *
+     * @param createOptions Our element path is dynamic, what we set
+     *                      in the feature file , will find it.
+     */
     public void clickCreateDoc(String createOptions) {
         driver.findElement(By.xpath("//li // a[contains(text(), '" + createOptions + "')]")).click();
-
     }
 
     public void setMultiDocBtn() {
@@ -199,29 +182,25 @@ public class PublishDocumentPage extends TestSetupPage {
     }
 
     public void setMultiDocInfo() {
-
         multiDocTitle.click();
-        multiDocTitle.sendKeys("title of" + new Faker().name().title());
-        sleepFor(2);
-
+        multiDocTitle.sendKeys("title of" + new Faker().name().fullName());
+        waitForVisibility(multiDocTitle);
         inputSectionName.click();
         inputSectionName.sendKeys("Section" + new Faker().number().digits(2));
         sectionAdd.click();
-        sleepFor(2);
+        waitForVisibility(sectionAdd);
         multiDocDescription.click();
-        multiDocDescription.sendKeys("description doc " + new Faker().lorem());
-
-
+        multiDocDescription.sendKeys("description doc " + new Faker().lorem().paragraph());
     }
 
-    //========================= Steps define for multi section document End ============================== //
-
-
-    //=========================== Video Doc Steps Define =================================== //
-
+    /**
+     * Video document published
+     *
+     * @param createOptions Our element path is dynamic, what we set
+     *                      in the feature file , will find it.
+     */
     public void selectVideo(String createOptions) {
         driver.findElement(By.xpath("//li // a[contains(text(), '" + createOptions + "')]")).click();
-
     }
 
     public void videoInfo() {
@@ -251,6 +230,4 @@ public class PublishDocumentPage extends TestSetupPage {
             }
         }
     }
-
-
 }

@@ -22,6 +22,9 @@ public class TestSetupPage {
     protected static boolean REMOTE_TEST;
     private static DesiredCapabilities caps = new DesiredCapabilities();
 
+    /**
+     * @param seconds
+     */
     public static void sleepFor(int seconds) {
         try {
             Thread.sleep(1000 * seconds);
@@ -30,61 +33,41 @@ public class TestSetupPage {
         }
     }
 
+    /**
+     * Scroll down the web page
+     */
+    public static void scrollDown() {
+        js.executeScript("window.scrollBy(0, 450)");
+    }
 
     public static void scrollTop() {
         js.executeScript("window.scrollTo(0, 0)");
     }
 
-    //=============================   SCROLL DOWN  =======================================
-    public static void scrollDown() {
-        // This  will scroll down the page by  100 pixel vertical
-        js.executeScript("window.scrollBy(0, 450)");
-    }
-
+    /**
+     * This  will scroll down the page by  100 pixel vertical
+     *
+     * @param count We can set the scroll value by any number
+     */
     public static void scrollDown(int count) {
-        // This  will scroll down the page by  100 pixel vertical
         for (int i = 0; i < count; i++) {
             js.executeScript("window.scrollBy(0, 300)");
             sleepFor(1);
         }
     }
 
-    //======================== WAIT ELEMENT CLICK  ==============================
+    /**
+     * Wait Element to Scroll
+     *
+     * @param element Pass the element name to scroll down
+     */
     public static void scrollDownToElement(WebElement element) {
         js.executeScript("arguments[0].scrollIntoView();", element);
     }
 
-    //=================================   START DRIVER  =======================================
-    public void startDriver() {
-        Map<String, Object> prefs = new HashMap<String, Object>();
-        prefs.put("credentials_enable_service", false);
-        prefs.put("profile.password_manager_enabled", false);
-
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--disable-notifications");
-        chromeOptions.setExperimentalOption("prefs", prefs);
-        chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"}); // chrome control text
-
-        // set properties
-        System.setProperty(ChromeDriverService.CHROME_DRIVER_EXE_PROPERTY, System.getProperty("user.dir") + "/drivers/chromedriver_win32/chromedriver.exe");
-        System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true"); //selenium text ignore
-        java.util.logging.Logger.getLogger("org.openqa.selenium").setLevel(Level.OFF);
-
-        chromeOptions.addArguments("--disable-notifications");
-        chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"}); // chrome control text
-        chromeOptions.addArguments("--ignore-certificate-errors");
-        driver = new ChromeDriver(chromeOptions);
-        js = (JavascriptExecutor) driver;
-    }
-
-    //=============================   STOP DRIVER  =======================================
-    public void stopDriver() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
-
-    //=============================   SLEEP ACTIVITIES  =======================================
+    /**
+     * Sleep for 5 seconds
+     */
     public void sleepFor() {
         try {
             Thread.sleep(1000 * 5);
@@ -93,6 +76,56 @@ public class TestSetupPage {
         }
     }
 
+    /**
+     * Start Driver
+     * Pause the browser auto fill password modal
+     * Dynamic driver path
+     */
+    public void startDriver() {
+        Map<String, Object> prefs = new HashMap<String, Object>();
+        prefs.put("credentials_enable_service", false);
+        prefs.put("profile.password_manager_enabled", false);
+
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--disable-notifications");
+        chromeOptions.setExperimentalOption("prefs", prefs);
+        /**
+         * Chrome control text
+         */
+        chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+
+        /**
+         * Set properties
+         */
+        System.setProperty(ChromeDriverService.CHROME_DRIVER_EXE_PROPERTY, System.getProperty("user.dir") + "/drivers/chromedriver_win32/chromedriver.exe");
+        System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true"); //selenium text ignore
+        java.util.logging.Logger.getLogger("org.openqa.selenium").setLevel(Level.OFF);
+
+        chromeOptions.addArguments("--disable-notifications");
+        /**
+         * Chrome control text
+         */
+        chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+        chromeOptions.addArguments("--ignore-certificate-errors");
+        driver = new ChromeDriver(chromeOptions);
+        js = (JavascriptExecutor) driver;
+    }
+
+    /**
+     * This will close the browser & ends the session
+     */
+    public void stopDriver() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+
+    /**
+     * Element visibility check
+     * Element invisibility check
+     *
+     * @param element We can pass the web element name
+     */
     protected void waitForVisibility(WebElement element) {
         isLocatorVisible(element, TIMEOUT);
     }
@@ -118,6 +151,4 @@ public class TestSetupPage {
         WebDriverWait wait = new WebDriverWait(driver, seconds);
         wait.until(ExpectedConditions.invisibilityOf(element));
     }
-
-
 }
