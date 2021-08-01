@@ -111,7 +111,7 @@ public class PublishDocumentPage extends TestSetupPage {
 
     public void setDocInfo() {
         simpleDocTitle.clear();
-        waitForVisibility(simpleDocBtn);
+        waitForVisibility(simpleDocTitle);
         simpleDocTitle.sendKeys(" Title" + new Faker().name().fullName());
         docDescription.click();
         docDescription.sendKeys("Automation" + new Faker().lorem().paragraph());
