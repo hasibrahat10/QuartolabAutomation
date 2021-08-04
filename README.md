@@ -18,6 +18,7 @@ git clone https://github.com/hasibrahat10/QuartolabAutomation.git
 ```gherkin
     @login
     Feature: Login into the application
+
     @test-1
     Scenario: I want to login Quarto with a verified email
     Given I click on accept cookies button
@@ -25,7 +26,7 @@ git clone https://github.com/hasibrahat10/QuartolabAutomation.git
     And I have entered an email id and click on next
     And I have entered password and click on login
 ```
-- Go to project featureSteps package `src/test/java/stepDefinitions`
+- Go to project stepDefinitions package `src/test/java/stepDefinitions`
 - Create a new file `HomePageSteps.java`
 - Add necessary feature steps in the file
 - Example:
