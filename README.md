@@ -135,11 +135,6 @@ git clone https://github.com/hasibrahat10/QuartolabAutomation.git
 │       │    │   └── TestSetupPaage
 │       │    ├── testRunner
 │       │    │   └── TestRunner.java
-│       │    ├── utils
-│       │    │   ├── Helpers.java
-│       │    │   └── MailHelper.java
-│       │    ├── EnvData.java
-│       │    └── User.java
 ├── videos
 |   ├──vide1.mp4           
 ├── pom.xml
