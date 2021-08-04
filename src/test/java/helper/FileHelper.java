@@ -15,9 +15,7 @@ public class FileHelper extends TestSetupPage {
     public static final String IMAGES_DIR = CURRENT_DIR + "/images/";
     public static final String VIDEOS_DIR = CURRENT_DIR + "/videos/";
     public static String SCREENSHOT_DIR = CURRENT_DIR + "/target/screenshot/";
-
     public static String DATA_FOLDER = CURRENT_DIR + "/data/";
-
 
     public static void take_screenshot() {
         File screenshot_file;
@@ -33,7 +31,6 @@ public class FileHelper extends TestSetupPage {
                 e.printStackTrace();
             }
         }
-
     }
 
     private static String clean_string(String scenario_name) {

@@ -24,7 +24,6 @@ public class Hooks extends TestSetupPage {
 //            FileHelper.take_screenshot();
 //        }
         FileHelper.take_screenshot();
-
         stopDriver();
     }
 

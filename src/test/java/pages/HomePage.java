@@ -1,5 +1,6 @@
 package pages;
 
+import com.github.javafaker.Faker;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -8,81 +9,55 @@ import stepDefinitions.TestSetupPage;
 
 public class HomePage extends TestSetupPage {
     @FindBy(xpath = "//button[contains(text(),'Accept')]")
-    WebElement cookiesAccept;
+    private WebElement cookiesAccept;
     @FindBy(xpath = "//a[contains(text(),'features')]")
-    WebElement features;
+    private WebElement features;
     @FindBy(xpath = "//a[contains(text(),'pricing')]")
-    WebElement pricing;
+    private WebElement pricing;
     @FindBy(xpath = "//img[@class='light']")
-    WebElement logoImg;
+    private WebElement logoImg;
     @FindBy(xpath = "//h2[contains(text(),'quarto features')]")
-    WebElement textDisplayed;
+    private WebElement textDisplayed;
     @FindBy(xpath = "//a[contains(text(),'industries ')]")
-    WebElement industriesDropdown;
-
+    private WebElement industriesDropdown;
     @FindBy(xpath = "//a[@href='construction.html']")
-    WebElement constructionLink;
-
+    private WebElement constructionLink;
     @FindBy(xpath = "//a[contains(text(),'Sign In')]")
-    WebElement signIn;
-
+    private WebElement signIn;
     @FindBy(id = "email")
-    WebElement emailID;
-
+    private WebElement emailID;
     @FindBy(id = "password")
-    WebElement password;
-
+    private WebElement password;
     @FindBy(className = "invalid-feedback")
-    WebElement errorAlert;
-
+    private WebElement errorAlert;
     @FindBy(xpath = "//a[contains(text(),'Next')]")
-    WebElement next;
-
+    private WebElement next;
     @FindBy(xpath = "//button[contains(text(),'Log In ')]")
-    WebElement login;
-
-
+    private WebElement login;
     @FindBy(xpath = "//a[contains(text(),'Home')]")
-    WebElement home;
-
-    //Request Demo Element Finder
-
+    private WebElement home;
     @FindBy(xpath = "(//a[contains(text(),'Request Demo')])[2]")
-    WebElement requestDemo;
-
+    private WebElement requestDemo;
     @FindBy(id = "name")
-    WebElement userName;
-
+    private WebElement userName;
     @FindBy(id = "email")
-    WebElement userEmail;
-
+    private WebElement userEmail;
     @FindBy(id = "companyname")
-    WebElement companyName;
-
+    private WebElement companyName;
     @FindBy(id = "phonenumber")
-    WebElement phoneNumber;
-
-
+    private WebElement phoneNumber;
     @FindBy(id = "message")
-    WebElement message;
-
+    private WebElement message;
     @FindBy(xpath = "//span[contains(text(),'submit')]")
-    WebElement buttonSubmit;
+    private WebElement buttonSubmit;
     @FindBy(xpath = "//span[@class='icon-close']")
-    WebElement closeSuccess;
-
-    // Contact Us Form Submission
-
+    private WebElement closeSuccess;
     @FindBy(xpath = "(//a[contains(text(),'Contact Us')])[1]")
-    WebElement contactUs;
-
+    private WebElement contactUs;
 
     public HomePage() {
         PageFactory.initElements(driver, this);
     }
-
-
-    //=====================  constructor define ===============================
 
     public void setDropMenu() {
         Actions action = new Actions(driver);
@@ -90,11 +65,9 @@ public class HomePage extends TestSetupPage {
         constructionLink.click();
     }
 
-    //========================= Custom Method declare for the steps =======================
-
     public void setFeatures() {
         features.click();
-        sleepFor(5);
+        waitForVisibility(features);
     }
 
     public String setTextDisplayed() {
@@ -103,14 +76,14 @@ public class HomePage extends TestSetupPage {
 
     public void setSignIn() {
         signIn.click();
-        sleepFor(3);
+        waitForVisibility(signIn);
     }
 
     public void setSignInProcess() {
         emailID.clear();
         emailID.sendKeys("hasancse10@gmail.com");
         next.click();
-        sleepFor(2);
+        waitForVisibility(next);
     }
 
     public void setPassword() {
@@ -120,69 +93,54 @@ public class HomePage extends TestSetupPage {
     }
 
     public String loginNextProcess() {
-        sleepFor(2);
+        waitForVisibility(next);
         next.click();
         return errorAlert.getText();
     }
 
-    //Cookies Accepts
-
     public void setCookiesAccept() {
         cookiesAccept.click();
-        sleepFor(2);
+        waitForVisibility(cookiesAccept);
     }
-
-    // Menu and logo item click
 
     public void setLogMenuItem() {
         features.click();
-        sleepFor(3);
+        waitForVisibility(features);
         pricing.click();
-        sleepFor(3);
+        waitForVisibility(pricing);
         logoImg.click();
-        sleepFor(3);
+        waitForVisibility(logoImg);
     }
-
-    //Request Demo Screen
 
     public void setRequestDemo() {
         requestDemo.click();
-        sleepFor(4);
+        waitForVisibility(requestDemo);
         setCookiesAccept();
-
     }
 
     public void setFormDetails() {
         userName.clear();
-        userName.sendKeys("Hasib Rahat23");
+        userName.sendKeys("test" + new Faker().name().username());
         userEmail.clear();
-        userEmail.sendKeys("hasib126@yopmail.com");
-
+        userEmail.sendKeys("hasib"+ new Faker().number().digits(2) + "yopmail.com");
         companyName.clear();
-        companyName.sendKeys("Demo Company");
-
+        companyName.sendKeys("my" + new Faker().company().name());
         phoneNumber.clear();
         phoneNumber.sendKeys("(123) 121-2412");
-
         message.clear();
-        message.sendKeys("I am trying to access the demo version of Quarto Lab.");
-
-        sleepFor(2);
+        message.sendKeys("Mesage for" +new Faker().lorem().paragraph(2));
+        waitForVisibility(message);
         buttonSubmit.click();
-        sleepFor(5);
+        waitForVisibility(buttonSubmit);
     }
 
     public void setCloseSuccess() {
         closeSuccess.click();
-        sleepFor(4);
+        waitForVisibility(closeSuccess);
     }
-
-    // Contact Us
 
     public void setContactUs() {
         contactUs.click();
-        sleepFor(2);
+        waitForVisibility(contactUs);
     }
-
-
 }

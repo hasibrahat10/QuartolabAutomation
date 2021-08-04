@@ -8,7 +8,6 @@ Feature: Quarto Landing Page
     Then I click on features menu
     And I observed the text "QUARTO FEATURES"
 
-#  Scenario: Industries menu screen visit
   @login-failed
   Scenario:  I want to login Quarto with any email
     Then I click on sign in link
