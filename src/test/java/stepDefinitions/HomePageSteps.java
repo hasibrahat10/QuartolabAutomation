@@ -13,9 +13,8 @@ public class HomePageSteps extends TestSetupPage {
         new HomePage().setFeatures();
     }
 
-    @Then("I observed the text (.*)")
+    @Then("^I observed the text \"([^\"]*)\"$")
     public void i_observed_the_text(String expectedText) {
-        sleepFor(3);
         Assert.assertEquals(expectedText, new HomePage().setTextDisplayed());
     }
 
@@ -48,7 +47,6 @@ public class HomePageSteps extends TestSetupPage {
 
     @Given("I click on accept cookies button")
     public void iClickOnAcceptCookiesButton() {
-        sleepFor(10);
         new HomePage().setCookiesAccept();
     }
 

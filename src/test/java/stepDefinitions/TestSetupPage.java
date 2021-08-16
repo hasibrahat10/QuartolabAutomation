@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+import helper.FileHelper;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -97,7 +98,7 @@ public class TestSetupPage {
         /**
          * Set properties
          */
-        System.setProperty(ChromeDriverService.CHROME_DRIVER_EXE_PROPERTY, System.getProperty("user.dir") + "/drivers/chromedriver_win32/chromedriver.exe");
+        System.setProperty(ChromeDriverService.CHROME_DRIVER_EXE_PROPERTY, System.getProperty("user.dir") + FileHelper.CHROME_DRIVER_PATH);
         System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true"); //selenium text ignore
         java.util.logging.Logger.getLogger("org.openqa.selenium").setLevel(Level.OFF);
 

@@ -71,6 +71,7 @@ public class HomePage extends TestSetupPage {
     }
 
     public String setTextDisplayed() {
+        waitForVisibility(textDisplayed);
         return textDisplayed.getText();
     }
 
@@ -99,8 +100,8 @@ public class HomePage extends TestSetupPage {
     }
 
     public void setCookiesAccept() {
-        cookiesAccept.click();
         waitForVisibility(cookiesAccept);
+        cookiesAccept.click();
     }
 
     public void setLogMenuItem() {
