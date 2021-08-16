@@ -47,7 +47,7 @@ public class HomePageSteps extends TestSetupPage {
 
     @Given("I click on accept cookies button")
     public void iClickOnAcceptCookiesButton() {
-        new HomePage().setCookiesAccept();
+//        new HomePage().setCookiesAccept();
     }
 
     @And("I click on features, pricing and logo image")

@@ -18,6 +18,8 @@ public class FileHelper extends TestSetupPage {
     public static String DATA_FOLDER = CURRENT_DIR + "/data/";
     public static final String CHROME_DRIVER_PATH = System.getProperty("os.name").contains("Windows") ?
             "/drivers/chromedriver.exe" : "/drivers/chromedriver";
+    public static final String EMAIL_ADDRESS = System.getenv("email");
+    public static final String PASSWORD = System.getenv("password");
 
     public static void take_screenshot() {
         File screenshot_file;

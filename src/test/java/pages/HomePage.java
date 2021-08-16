@@ -1,6 +1,7 @@
 package pages;
 
 import com.github.javafaker.Faker;
+import helper.FileHelper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -76,20 +77,21 @@ public class HomePage extends TestSetupPage {
     }
 
     public void setSignIn() {
+        waitForVisibility(signIn,20);
         signIn.click();
-        waitForVisibility(signIn);
     }
 
     public void setSignInProcess() {
-        emailID.clear();
-        emailID.sendKeys("hasancse10@gmail.com");
+        waitForVisibility(emailID, 20);
+        emailID.sendKeys(FileHelper.EMAIL_ADDRESS);
         next.click();
         waitForVisibility(next);
     }
 
     public void setPassword() {
-        password.clear();
-        password.sendKeys("Hasib@2019@");
+        waitForVisibility(password);
+        password.isDisplayed();
+        password.sendKeys(FileHelper.PASSWORD);
         login.click();
     }
 
@@ -100,8 +102,9 @@ public class HomePage extends TestSetupPage {
     }
 
     public void setCookiesAccept() {
-        waitForVisibility(cookiesAccept);
+        waitForVisibility(cookiesAccept,20);
         cookiesAccept.click();
+        sleepFor(2);
     }
 
     public void setLogMenuItem() {
@@ -123,13 +126,13 @@ public class HomePage extends TestSetupPage {
         userName.clear();
         userName.sendKeys("test" + new Faker().name().username());
         userEmail.clear();
-        userEmail.sendKeys("hasib"+ new Faker().number().digits(2) + "yopmail.com");
+        userEmail.sendKeys("hasib" + new Faker().number().digits(2) + "yopmail.com");
         companyName.clear();
         companyName.sendKeys("my" + new Faker().company().name());
         phoneNumber.clear();
         phoneNumber.sendKeys("(123) 121-2412");
         message.clear();
-        message.sendKeys("Mesage for" +new Faker().lorem().paragraph(2));
+        message.sendKeys("Mesage for" + new Faker().lorem().paragraph(2));
         waitForVisibility(message);
         buttonSubmit.click();
         waitForVisibility(buttonSubmit);

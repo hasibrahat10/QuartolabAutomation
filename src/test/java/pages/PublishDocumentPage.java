@@ -87,6 +87,7 @@ public class PublishDocumentPage extends TestSetupPage {
      * Common create Icon for create documents
      */
     public void setCreateIcon() {
+        waitForVisibility(createIcon, 20);
         createIcon.click();
     }
 
@@ -96,26 +97,27 @@ public class PublishDocumentPage extends TestSetupPage {
      * @param option
      */
     public void selectCreateOptions(String option) {
+        waitForVisibility(createOptions.get(0));
         for (WebElement element : createOptions) {
             if (element.getText().equalsIgnoreCase(option)) {
                 element.click();
                 break;
             }
         }
-        sleepFor(15);
     }
 
     public void setSimpleDocBtn() {
+        waitForVisibility(simpleDocBtn);
         simpleDocBtn.click();
     }
 
     public void setDocInfo() {
-        simpleDocTitle.clear();
         waitForVisibility(simpleDocTitle);
+        simpleDocTitle.clear();
         simpleDocTitle.sendKeys(" Title" + new Faker().name().fullName());
         docDescription.click();
-        docDescription.sendKeys("Automation" + new Faker().lorem().paragraph());
         waitForVisibility(docDescription);
+        docDescription.sendKeys("Automation" + new Faker().lorem().paragraph());
     }
 
     /**

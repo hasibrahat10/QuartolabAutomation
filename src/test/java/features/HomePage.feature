@@ -30,7 +30,7 @@ Feature: Quarto Landing Page
     Then I click on contact us button
     And I have submit the form info and close the success screen
 
-  @login
+  @login ~@wip
   Scenario:  I want to login Quarto with a verified email
     Then I click on sign in link
     And I have entered an email id and click on next

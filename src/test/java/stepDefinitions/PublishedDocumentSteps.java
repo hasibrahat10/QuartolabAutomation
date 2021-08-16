@@ -13,8 +13,8 @@ public class PublishedDocumentSteps extends TestSetupPage {
     @Then("I click on create icon")
     public void iClickOnCreateIcon() {
         HomePage homePage = new HomePage();
-        homePage.setSignIn();
-        homePage.setSignInProcess();
+//        homePage.setSignIn();
+//        homePage.setSignInProcess();
         homePage.setPassword();
         new PublishDocumentPage().setCreateIcon();
     }

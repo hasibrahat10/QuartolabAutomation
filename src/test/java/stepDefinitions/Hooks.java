@@ -13,9 +13,9 @@ public class Hooks extends TestSetupPage {
     public void setUpDriver(Scenario scenario) {
         scenarioName = scenario.getName();
         startDriver();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        driver.get("https://quartolab.com/");
+        driver.get("https://sqa.quartolab.com/account/login?email=hasancse10@gmail.com");
     }
 
     @After
