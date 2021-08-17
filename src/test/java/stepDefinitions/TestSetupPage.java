@@ -44,7 +44,6 @@ public class TestSetupPage {
         prefs.put("credentials_enable_service", false);
         prefs.put("profile.password_manager_enabled", false);
         chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
-        chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
         chromeOptions.setExperimentalOption("prefs", prefs);
         return chromeOptions;
     }
