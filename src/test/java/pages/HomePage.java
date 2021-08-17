@@ -68,57 +68,57 @@ public class HomePage extends TestSetupPage {
 
     public void setFeatures() {
         features.click();
-        waitForVisibility(features);
+        waitForDisplayed(features);
     }
 
     public String setTextDisplayed() {
-        waitForVisibility(textDisplayed);
+        waitForDisplayed(textDisplayed);
         return textDisplayed.getText();
     }
 
     public void setSignIn() {
-        waitForVisibility(signIn,20);
+        waitForDisplayed(signIn,20);
         signIn.click();
     }
 
     public void setSignInProcess() {
-        waitForVisibility(emailID, 20);
+        waitForDisplayed(emailID, 20);
         emailID.sendKeys(FileHelper.EMAIL_ADDRESS);
         next.click();
-        waitForVisibility(next);
+        waitForDisplayed(next);
     }
 
     public void setPassword() {
-        waitForVisibility(password);
+        waitForDisplayed(password);
         password.isDisplayed();
         password.sendKeys(FileHelper.PASSWORD);
         login.click();
     }
 
     public String loginNextProcess() {
-        waitForVisibility(next);
+        waitForDisplayed(next);
         next.click();
         return errorAlert.getText();
     }
 
     public void setCookiesAccept() {
-        waitForVisibility(cookiesAccept,20);
+        waitForDisplayed(cookiesAccept,20);
         cookiesAccept.click();
-        sleepFor(2);
+        sleep(2);
     }
 
     public void setLogMenuItem() {
         features.click();
-        waitForVisibility(features);
+        waitForDisplayed(features);
         pricing.click();
-        waitForVisibility(pricing);
+        waitForDisplayed(pricing);
         logoImg.click();
-        waitForVisibility(logoImg);
+        waitForDisplayed(logoImg);
     }
 
     public void setRequestDemo() {
         requestDemo.click();
-        waitForVisibility(requestDemo);
+        waitForDisplayed(requestDemo);
         setCookiesAccept();
     }
 
@@ -133,18 +133,18 @@ public class HomePage extends TestSetupPage {
         phoneNumber.sendKeys("(123) 121-2412");
         message.clear();
         message.sendKeys("Mesage for" + new Faker().lorem().paragraph(2));
-        waitForVisibility(message);
+        waitForDisplayed(message);
         buttonSubmit.click();
-        waitForVisibility(buttonSubmit);
+        waitForDisplayed(buttonSubmit);
     }
 
     public void setCloseSuccess() {
         closeSuccess.click();
-        waitForVisibility(closeSuccess);
+        waitForDisplayed(closeSuccess);
     }
 
     public void setContactUs() {
         contactUs.click();
-        waitForVisibility(contactUs);
+        waitForDisplayed(contactUs);
     }
 }

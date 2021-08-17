@@ -1,30 +1,20 @@
 package stepDefinitions;
 
-
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import helper.FileHelper;
 
-import java.util.concurrent.TimeUnit;
-
 public class Hooks extends TestSetupPage {
     @Before
-    public void setUpDriver(Scenario scenario) {
-        scenarioName = scenario.getName();
+    public void setUpDriver() {
         startDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-        driver.get("https://sqa.quartolab.com/account/login?email=hasancse10@gmail.com");
     }
 
     @After
-    public void tearDown() {
-//        if (scenario.isFailed()) {
-//            FileHelper.take_screenshot();
-//        }
-        FileHelper.take_screenshot();
+    public void tearDown(Scenario scenario) {
+//        if (scenario.isFailed())
+        FileHelper.takeScreenshot(scenario.getName());
         stopDriver();
     }
-
 }

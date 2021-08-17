@@ -87,7 +87,7 @@ public class PublishDocumentPage extends TestSetupPage {
      * Common create Icon for create documents
      */
     public void setCreateIcon() {
-        waitForVisibility(createIcon, 20);
+        waitForDisplayed(createIcon, 20);
         createIcon.click();
     }
 
@@ -97,7 +97,7 @@ public class PublishDocumentPage extends TestSetupPage {
      * @param option
      */
     public void selectCreateOptions(String option) {
-        waitForVisibility(createOptions.get(0));
+        waitForDisplayed(createOptions.get(0));
         for (WebElement element : createOptions) {
             if (element.getText().equalsIgnoreCase(option)) {
                 element.click();
@@ -107,16 +107,16 @@ public class PublishDocumentPage extends TestSetupPage {
     }
 
     public void setSimpleDocBtn() {
-        waitForVisibility(simpleDocBtn);
+        waitForDisplayed(simpleDocBtn);
         simpleDocBtn.click();
     }
 
     public void setDocInfo() {
-        waitForVisibility(simpleDocTitle);
+        waitForDisplayed(simpleDocTitle);
         simpleDocTitle.clear();
         simpleDocTitle.sendKeys(" Title" + new Faker().name().fullName());
         docDescription.click();
-        waitForVisibility(docDescription);
+        waitForDisplayed(docDescription);
         docDescription.sendKeys("Automation" + new Faker().lorem().paragraph());
     }
 
@@ -125,14 +125,14 @@ public class PublishDocumentPage extends TestSetupPage {
      */
     public void setPublishDocument() {
         addCategoriesBtn.click();
-        sleepFor(2);
+        sleep(2);
         selectedCategory.click();
 //        selectCategory("Normal docs track");
         categorySelectDone.click();
         publishDoc.click();
-        sleepFor(2);
+        sleep(2);
         confirmYes.click();
-        sleepFor(4);
+        sleep(4);
         backToContentMgr.click();
     }
 
@@ -143,9 +143,9 @@ public class PublishDocumentPage extends TestSetupPage {
         selectCategory("Normal docs track");
         categorySelectDone.click();
         publishDoc.click();
-        sleepFor(2);
+        sleep(2);
         confirmYes.click();
-        sleepFor(4);
+        sleep(4);
         backToContentMgr.click();
     }
 
@@ -154,17 +154,17 @@ public class PublishDocumentPage extends TestSetupPage {
      */
     public void setVisualDocBtn() {
         visualDocBtn.click();
-        sleepFor(5);
+        sleep(5);
     }
 
     public void visualDocInfo() {
         visualDocTitle.clear();
         visualDocTitle.sendKeys("Visual doc automation title sample");
-        waitForVisibility(visualDocTitle);
+        waitForDisplayed(visualDocTitle);
         String[] images = new String[]{"qdev.PNG", "test.jpg"};
         for (String image : images) {
             addImage.sendKeys(FileHelper.IMAGES_DIR + image);
-            waitForVisibility(addImage);
+            waitForDisplayed(addImage);
         }
         descriptionVisualDoc.sendKeys("Used to automate native" + new Faker().lorem().paragraph());
     }
@@ -186,11 +186,11 @@ public class PublishDocumentPage extends TestSetupPage {
     public void setMultiDocInfo() {
         multiDocTitle.click();
         multiDocTitle.sendKeys("title of" + new Faker().name().fullName());
-        waitForVisibility(multiDocTitle);
+        waitForDisplayed(multiDocTitle);
         inputSectionName.click();
         inputSectionName.sendKeys("Section" + new Faker().number().digits(2));
         sectionAdd.click();
-        waitForVisibility(sectionAdd);
+        waitForDisplayed(sectionAdd);
         multiDocDescription.click();
         multiDocDescription.sendKeys("description doc " + new Faker().lorem().paragraph());
     }
@@ -211,7 +211,7 @@ public class PublishDocumentPage extends TestSetupPage {
         String[] videos = new String[]{"vide1.mp4"};
         for (String video : videos) {
             videoFileBrowse.sendKeys(FileHelper.VIDEOS_DIR + video);
-            waitForVisibility(uploadProgressBar);
+            waitForDisplayed(uploadProgressBar);
         }
         scrollDownToElement(videoDescription);
         videoDescription.sendKeys("Description of video " + new Faker().lorem().paragraph());
