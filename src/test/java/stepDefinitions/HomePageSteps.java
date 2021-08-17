@@ -31,7 +31,7 @@ public class HomePageSteps extends TestSetupPage {
         new HomePage().setSignInProcess();
     }
 
-    @When("I get an error alert (.*)")
+    @When("^I get an error alert \"([^\"]*)\"$")
     public void i_get_an_error_alert(String text) {
         new HomePage().loginNextProcess();
     }

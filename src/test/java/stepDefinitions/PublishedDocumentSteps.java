@@ -23,7 +23,7 @@ public class PublishedDocumentSteps extends TestSetupPage {
      * Common steps for create options
      * @param option
      */
-    @Then("I select (.*) option")
+    @Then("^I select \"([^\"]*)\" option$")
     public void iSelectOption(String option) {
         new PublishDocumentPage().selectCreateOptions(option);
     }
