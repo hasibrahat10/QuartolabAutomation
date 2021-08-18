@@ -60,7 +60,7 @@ public class TestSetupPage {
         driver.register(new EventReported());
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://sqa.quartolab.com/account/login?email=hasancse10@gmail.com");
+        driver.get("https://sqa.quartolab.com/account/login?email=tlive5@yopmail.com");
 //        driver.get("https://quartolab.com/");
     }
 
