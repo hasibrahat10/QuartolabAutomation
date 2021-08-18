@@ -115,8 +115,7 @@ public class PublishDocumentPage extends TestSetupPage {
         waitForDisplayed(simpleDocTitle);
         simpleDocTitle.clear();
         simpleDocTitle.sendKeys(" Title" + new Faker().name().fullName());
-        docDescription.click();
-        waitForDisplayed(docDescription);
+        waitForDisplayed(docDescription, 20);
         docDescription.sendKeys("Automation" + new Faker().lorem().paragraph());
     }
 
@@ -125,14 +124,13 @@ public class PublishDocumentPage extends TestSetupPage {
      */
     public void setPublishDocument() {
         addCategoriesBtn.click();
-        sleep(2);
-        selectedCategory.click();
-//        selectCategory("Normal docs track");
+        selectCategory("Normal docs track");
+        waitForDisplayed(categorySelectDone);
         categorySelectDone.click();
+        waitForDisplayed(publishDoc);
         publishDoc.click();
-        sleep(2);
         confirmYes.click();
-        sleep(4);
+        waitForDisplayed(backToContentMgr);
         backToContentMgr.click();
     }
 
@@ -223,13 +221,8 @@ public class PublishDocumentPage extends TestSetupPage {
      * @param category Your expected category name
      */
     public void selectCategory(String category) {
-        scrollTop();
-        for (WebElement element : categories) {
-            System.out.println(element.getAttribute("id"));
-            if (element.getAttribute("id").contains(category.toLowerCase())) {
-                element.click();
-                break;
-            }
-        }
+        WebElement categoryCheckbox = driver.findElement(By.xpath("//label[contains(@for,'" + category.toLowerCase() + "') and @class='form-check-label']"));
+        waitForDisplayed(categoryCheckbox);
+        categoryCheckbox.click();
     }
 }
