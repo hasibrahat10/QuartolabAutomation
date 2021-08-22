@@ -1,6 +1,6 @@
 package stepDefinitions;
 
-import helper.EventReported;
+import helper.EventReporter;
 import helper.FileHelper;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
@@ -57,7 +57,7 @@ public class TestSetupPage {
         WebDriver webDriver = new ChromeDriver(getChromeOptions());
         js = (JavascriptExecutor) webDriver;
         driver = new EventFiringWebDriver(webDriver);
-        driver.register(new EventReported());
+        driver.register(new EventReporter());
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("https://sqa.quartolab.com/account/login?email=hasancse10@gmail.com");
