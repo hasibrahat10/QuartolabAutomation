@@ -19,59 +19,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 public class TestSetupPage {
+    private static final int TIMEOUT = 10;
     protected static EventFiringWebDriver driver;
     private static JavascriptExecutor js;
-    private static final int TIMEOUT = 10;
-
-    /**
-     * Set all necessary chrome driver options
-     *
-     * @return chrome options
-     */
-    private ChromeOptions getChromeOptions() {
-        //Set properties
-        System.setProperty(ChromeDriverService.CHROME_DRIVER_EXE_PROPERTY, System.getProperty("user.dir") + FileHelper.CHROME_DRIVER_PATH);
-        System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true"); //selenium text ignore
-        java.util.logging.Logger.getLogger("org.openqa.selenium").setLevel(Level.OFF);
-
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--disable-notifications");
-        chromeOptions.addArguments("--disable-notifications");
-        chromeOptions.addArguments("--ignore-certificate-errors");
-
-        //Chrome control text
-        Map<String, Object> prefs = new HashMap<String, Object>();
-        prefs.put("credentials_enable_service", false);
-        prefs.put("profile.password_manager_enabled", false);
-        chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
-        chromeOptions.setExperimentalOption("prefs", prefs);
-        return chromeOptions;
-    }
-
-    /**
-     * Start Driver
-     * Pause the browser auto fill password modal
-     * Dynamic driver path
-     */
-    void startDriver() {
-        WebDriver webDriver = new ChromeDriver(getChromeOptions());
-        js = (JavascriptExecutor) webDriver;
-        driver = new EventFiringWebDriver(webDriver);
-        driver.register(new EventReported());
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://sqa.quartolab.com/account/login?email=tlive5@yopmail.com");
-//        driver.get("https://quartolab.com/");
-    }
-
-    /**
-     * This will close the browser & ends the session
-     */
-    void stopDriver() {
-        if (driver != null)
-            driver.quit();
-    }
-
     /**
      * Initiate fluent wait with default configuration
      */
@@ -79,26 +29,6 @@ public class TestSetupPage {
             .withTimeout(Duration.ofSeconds(TIMEOUT))
             .pollingEvery(Duration.ofMillis(400))
             .ignoring(NoSuchElementException.class, NullPointerException.class);
-
-    protected void waitForDisplayed(WebElement element, int seconds) {
-        wait.withTimeout(Duration.ofSeconds(seconds)).until(a -> checkDisplayed(element));
-    }
-
-    protected void waitForDisplayed(WebElement element) {
-        wait.until(a -> checkDisplayed(element));
-    }
-
-    protected void waitForDisappear(WebElement element, int seconds) {
-        wait.withTimeout(Duration.ofSeconds(seconds)).until(a -> !checkDisplayed(element));
-    }
-
-    protected void waitForDisappear(WebElement element) {
-        wait.until(a -> !checkDisplayed(element));
-    }
-
-    private boolean checkDisplayed(WebElement element) {
-        return element.isDisplayed();
-    }
 
     /**
      * @param seconds
@@ -141,5 +71,80 @@ public class TestSetupPage {
      */
     protected static void scrollDownToElement(WebElement element) {
         js.executeScript("arguments[0].scrollIntoView();", element);
+    }
+
+    /**
+     * Set all necessary chrome driver options
+     *
+     * @return chrome options
+     */
+    private ChromeOptions getChromeOptions() {
+        //Set properties
+        System.setProperty(ChromeDriverService.CHROME_DRIVER_EXE_PROPERTY, System.getProperty("user.dir") + FileHelper.CHROME_DRIVER_PATH);
+        System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true"); //selenium text ignore
+        java.util.logging.Logger.getLogger("org.openqa.selenium").setLevel(Level.OFF);
+
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--disable-notifications");
+        chromeOptions.addArguments("--disable-notifications");
+        chromeOptions.addArguments("--ignore-certificate-errors");
+
+        //Chrome control text
+        Map<String, Object> prefs = new HashMap<String, Object>();
+        prefs.put("credentials_enable_service", false);
+        prefs.put("profile.password_manager_enabled", false);
+        chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+        chromeOptions.setExperimentalOption("prefs", prefs);
+        return chromeOptions;
+    }
+
+    /**
+     * Start Driver
+     * Pause the browser auto fill password modal
+     * Dynamic driver path
+     */
+    void startDriver() {
+        WebDriver webDriver = new ChromeDriver(getChromeOptions());
+        js = (JavascriptExecutor) webDriver;
+        driver = new EventFiringWebDriver(webDriver);
+        driver.register(new EventReported());
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.get("https://sqa.quartolab.com/account/login?email=tlive5@yopmail.com");
+
+        /**
+         * If we open below url , then we need to maintain
+         * login process in the homepage
+         * comment on in the createIcon method
+         */
+//        driver.get("https://quartolab.com/");
+    }
+
+    /**
+     * This will close the browser & ends the session
+     */
+    void stopDriver() {
+        if (driver != null)
+            driver.quit();
+    }
+
+    protected void waitForDisplayed(WebElement element, int seconds) {
+        wait.withTimeout(Duration.ofSeconds(seconds)).until(a -> checkDisplayed(element));
+    }
+
+    protected void waitForDisplayed(WebElement element) {
+        wait.until(a -> checkDisplayed(element));
+    }
+
+    protected void waitForDisappear(WebElement element, int seconds) {
+        wait.withTimeout(Duration.ofSeconds(seconds)).until(a -> !checkDisplayed(element));
+    }
+
+    protected void waitForDisappear(WebElement element) {
+        wait.until(a -> !checkDisplayed(element));
+    }
+
+    private boolean checkDisplayed(WebElement element) {
+        return element.isDisplayed();
     }
 }
