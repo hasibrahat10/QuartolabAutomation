@@ -83,7 +83,7 @@ public class HomePage extends TestSetupPage {
 
     public void setSignInProcess() {
         waitForDisplayed(emailID, 20);
-        emailID.sendKeys(FileHelper.EMAIL_ADDRESS);
+        emailID.sendKeys(FileHelper.EMAIL);
         next.click();
         waitForDisplayed(next);
     }

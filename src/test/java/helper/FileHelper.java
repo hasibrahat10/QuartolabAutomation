@@ -1,36 +1,35 @@
 package helper;
 
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import stepDefinitions.TestSetupPage;
 
-import java.io.File;
-import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class FileHelper extends TestSetupPage {
-    public static final String CHROME_DRIVER_PATH = System.getProperty("os.name").contains("Windows") ?
-            "/drivers/chromedriver.exe" : "/drivers/chromedriver";
-    public static final String EMAIL_ADDRESS = System.getenv("email");
+    public static final ResourceBundle bundle = ResourceBundle.getBundle("config");
+  
+    public static final String EMAIL = System.getenv("email");
     public static final String PASSWORD = System.getenv("password");
-    public static String CURRENT_DIR = System.getProperty("user.dir");
-    public static final String IMAGES_DIR = CURRENT_DIR + "/images/";
-    public static final String VIDEOS_DIR = CURRENT_DIR + "/videos/";
-    public static String SCREENSHOT_DIR = CURRENT_DIR + "/target/screenshot/";
-    public static String DATA_FOLDER = CURRENT_DIR + "/data/";
 
-    public static void takeScreenshot(String scenarioName) {
-        File screenshot_file;
-        try {
-            String screenshot_name = cleanString(scenarioName) + "_" + ".png";
-            screenshot_file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(screenshot_file, new File(FileHelper.SCREENSHOT_DIR + screenshot_name));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public static final String USER_DIR = System.getProperty("user.dir");
+    public static final String DRIVER_PATH = USER_DIR + "/drivers/";
+    public static final String IMAGES_DIR = USER_DIR + "/images/";
+    public static final String VIDEOS_DIR = USER_DIR + "/videos/";
+    public static final String SCREENSHOT_DIR = USER_DIR + "/target/screenshot/";
+    public static final String DATA_FOLDER = USER_DIR + "/data/";
+
+    public static final boolean OS_WINDOWS = System.getProperty("os.name").contains("Windows");
+    public static final String CHROME_DRIVER_PATH = DRIVER_PATH + (OS_WINDOWS ? "chromedriver.exe" : "chromedriver");
+    public static final String FIREFOX_DRIVER_PATH = DRIVER_PATH + (OS_WINDOWS ? "geckodriver.exe" : "geckodriver");
+
+    public static String getResString(String key) {
+        return bundle.getString(key);
     }
 
-    private static String cleanString(String scenario_name) {
-        return scenario_name.replaceAll("[-()#.,]", "").replaceAll("[/ :]", "_");
+    public static int getResInteger(String key) {
+        return Integer.parseInt(bundle.getString(key));
+    }
+
+    public static boolean getResBoolean(String key) {
+        return Boolean.parseBoolean(bundle.getString(key));
     }
 }

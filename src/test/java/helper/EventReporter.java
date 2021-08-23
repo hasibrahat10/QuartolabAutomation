@@ -33,11 +33,12 @@ public class EventReporter implements WebDriverEventListener {
 
     @Override
     public void beforeNavigateTo(String s, WebDriver webDriver) {
+        System.out.println("Navigate: \t\t" + s);
     }
 
     @Override
     public void afterNavigateTo(String s, WebDriver webDriver) {
-        System.out.println("Navigate: \t\t" + s);
+        System.out.println("Page title: \t" + webDriver.getTitle() + "\n");
     }
 
     @Override
@@ -85,10 +86,11 @@ public class EventReporter implements WebDriverEventListener {
         List<WebElement> webElements = webDriver.findElements(locator);
         int index = webElements.size();
 
-        System.out.print("Found: \t\t\t[" + index + "][displayed: ");
+        System.out.print("Found: \t\t\tTotal -> " + webDriver.findElements(locator).size() + ", displayed -> { ");
         for (int i = 0; i < index; i++)
-            System.out.print(webElements.get(i).isDisplayed() + (i == index - 1 ? "]\n" : ", "));
-        System.out.println("Click on: \t\t<" + webElement.getTagName() + "> " + (webElement.getText().isEmpty() ? "\n" : "\'" + webElement.getText() + "\'\n"));
+            System.out.print("element_" + i + ": " + webElements.get(i).isDisplayed() + (i != index - 1 ? ", " : " }\n"));
+
+        System.out.println("Click on: \t\t<" + webElement.getTagName() + "> " + (!webElement.getText().isEmpty() ? "'" + webElement.getText() + "'\n" : "\n"));
     }
 
     @Override
@@ -98,12 +100,12 @@ public class EventReporter implements WebDriverEventListener {
 
     @Override
     public void beforeChangeValueOf(WebElement webElement, WebDriver webDriver, CharSequence[] charSequences) {
-        System.out.print(webElement.getTagName().equals("input") && !webElement.getAttribute("value").isEmpty() ? "Old text: \t\t\'" + webElement.getAttribute("value") + "\'\n\n" : "");
+        System.out.print(webElement.getTagName().equals("input") && !webElement.getAttribute("value").isEmpty() ? "Old text: \t\t'" + webElement.getAttribute("value") + "'\n\n" : "");
     }
 
     @Override
     public void afterChangeValueOf(WebElement webElement, WebDriver webDriver, CharSequence[] charSequences) {
-        System.out.print(webElement.getTagName().equals("input") && !webElement.getAttribute("value").isEmpty() ? "New text: \t\t\'" + webElement.getAttribute("value") + "\'\n\n" : "");
+        System.out.print(webElement.getTagName().equals("input") && !webElement.getAttribute("value").isEmpty() ? "New text: \t\t'" + webElement.getAttribute("value") + "'\n\n" : "");
     }
 
     @Override
@@ -133,11 +135,12 @@ public class EventReporter implements WebDriverEventListener {
 
     @Override
     public <X> void beforeGetScreenshotAs(OutputType<X> outputType) {
-        System.out.println("Screenshot: \t" + "Done");
+
     }
 
     @Override
     public <X> void afterGetScreenshotAs(OutputType<X> outputType, X x) {
+        System.out.println("Screenshot: \t" + System.getProperty("SCREENSHOT") + "\n");
     }
 
     @Override
@@ -147,6 +150,6 @@ public class EventReporter implements WebDriverEventListener {
 
     @Override
     public void afterGetText(WebElement webElement, WebDriver webDriver, String s) {
-        System.out.println(s.isEmpty() ? "" : "Get text: \t\t\'" + s + "\'\n");
+        System.out.println("Get text: \t\t" + (!s.isEmpty() ? "'" + s + "'\n" : "\n"));
     }
 }
