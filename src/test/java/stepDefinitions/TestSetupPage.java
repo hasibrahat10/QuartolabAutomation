@@ -22,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 public class TestSetupPage {
+    private static final int TIMEOUT = 10;
     protected static EventFiringWebDriver driver;
     private static JavascriptExecutor js;
 
@@ -175,48 +176,5 @@ public class TestSetupPage {
 
     private boolean checkDisplayed(WebElement element) {
         return element.isDisplayed();
-    }
-
-    /**
-     * @param seconds
-     */
-    protected static void sleep(int seconds) {
-        try {
-            Thread.sleep(1000 * seconds);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Scroll down the web page
-     */
-    protected static void scrollDown() {
-        js.executeScript("window.scrollBy(0, 450)");
-    }
-
-    protected static void scrollTop() {
-        js.executeScript("window.scrollTo(0, 0)");
-    }
-
-    /**
-     * This  will scroll down the page by  100 pixel vertical
-     *
-     * @param count We can set the scroll value by any number
-     */
-    protected static void scrollDown(int count) {
-        for (int i = 0; i < count; i++) {
-            js.executeScript("window.scrollBy(0, 300)");
-            sleep(1);
-        }
-    }
-
-    /**
-     * Wait Element to Scroll
-     *
-     * @param element Pass the element name to scroll down
-     */
-    protected static void scrollDownToElement(WebElement element) {
-        js.executeScript("arguments[0].scrollIntoView();", element);
     }
 }

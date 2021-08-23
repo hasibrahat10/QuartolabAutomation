@@ -77,7 +77,7 @@ public class HomePage extends TestSetupPage {
     }
 
     public void setSignIn() {
-        waitForDisplayed(signIn,20);
+        waitForDisplayed(signIn, 20);
         signIn.click();
     }
 
@@ -102,7 +102,7 @@ public class HomePage extends TestSetupPage {
     }
 
     public void setCookiesAccept() {
-        waitForDisplayed(cookiesAccept,20);
+        waitForDisplayed(cookiesAccept, 20);
         cookiesAccept.click();
         sleep(2);
     }
