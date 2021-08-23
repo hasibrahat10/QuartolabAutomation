@@ -110,7 +110,7 @@ public class EventReporter implements WebDriverEventListener {
 
     @Override
     public void beforeScript(String s, WebDriver webDriver) {
-        System.out.println("Execute script: \t" + s);
+        System.out.println("Execute js: \t" + s);
     }
 
     @Override

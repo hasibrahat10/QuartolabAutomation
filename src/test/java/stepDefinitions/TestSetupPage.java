@@ -172,4 +172,72 @@ public class TestSetupPage {
     protected void waitForDisappear(WebElement element) {
         wait.until(a -> !element.isDisplayed());
     }
+
+    /**
+     * Hard sleep for seconds
+     *
+     * @param seconds
+     */
+    public static void sleep(int seconds) {
+        try {
+            Thread.sleep(1000 * seconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Hard sleep for milliseconds
+     *
+     * @param milliseconds
+     */
+    public static void sleepInMillis(long milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Got to top of the page
+     */
+    protected static void scrollToTop() {
+        sleepInMillis(500);
+        executor.executeScript("window.scrollTo(0, 0)");
+        sleepInMillis(500);
+    }
+
+    /**
+     * Got to bottom of the page
+     */
+    protected static void scrollToBottom() {
+        sleepInMillis(500);
+        executor.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        sleepInMillis(500);
+    }
+
+    /**
+     * This  will scroll down the page by {pixel} vertical
+     *
+     * @param count We can set the scroll value by any number
+     */
+    protected static void scrollToDown(int pixel, int count) {
+        sleepInMillis(500);
+        for (int i = 0; i < count; i++) {
+            executor.executeScript("window.scrollBy(0, " + pixel + ")");
+            sleepInMillis(100);
+        }
+    }
+
+    /**
+     * Wait Element to Scroll
+     *
+     * @param element Pass the element name to scroll down
+     */
+    protected static void scrollToElement(WebElement element) {
+        sleepInMillis(500);
+        executor.executeScript("arguments[0].scrollIntoView();", element);
+        sleepInMillis(500);
+    }
 }
