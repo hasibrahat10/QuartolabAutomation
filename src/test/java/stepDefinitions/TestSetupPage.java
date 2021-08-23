@@ -157,19 +157,41 @@ public class TestSetupPage {
             .pollingEvery(Duration.ofMillis(400))
             .ignoring(NoSuchElementException.class, NullPointerException.class);
 
+    /**
+     * Wait for element to be displayed upto a certain time
+     *
+     * @param element wait for which element
+     * @param seconds amount of wait time
+     */
     protected void waitForDisplayed(WebElement element, int seconds) {
         wait.withTimeout(Duration.ofSeconds(seconds)).until(a -> element.isDisplayed());
     }
 
+    /**
+     * Wait for element to be displayed upto prefix explicit time
+     *
+     * @param element
+     */
     protected void waitForDisplayed(WebElement element) {
         wait.until(a -> element.isDisplayed());
     }
 
-    protected void waitForDisappear(WebElement element, int seconds) {
+    /**
+     * Wait for element to be not displayed upto a certain time
+     *
+     * @param element wait for which element
+     * @param seconds amount of wait time
+     */
+    protected void waitForNotDisplayed(WebElement element, int seconds) {
         wait.withTimeout(Duration.ofSeconds(seconds)).until(a -> !element.isDisplayed());
     }
 
-    protected void waitForDisappear(WebElement element) {
+    /**
+     * Wait for element to be not displayed upto prefix explicit time
+     *
+     * @param element
+     */
+    protected void waitForNotDisplayed(WebElement element) {
         wait.until(a -> !element.isDisplayed());
     }
 
