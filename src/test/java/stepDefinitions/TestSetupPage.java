@@ -22,9 +22,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 public class TestSetupPage {
-    private static final int TIMEOUT = 10;
     protected static EventFiringWebDriver driver;
-    private static JavascriptExecutor js;
+    private static JavascriptExecutor executor;
 
     /**
      * Start Driver
@@ -33,7 +32,7 @@ public class TestSetupPage {
      */
     void startDriver() {
         WebDriver webDriver = getWebDriver(FileHelper.getResString("BROWSER"));
-        js = (JavascriptExecutor) webDriver;
+        executor = (JavascriptExecutor) webDriver;
         driver = getEventFiringWebDriver(webDriver);
         driver.manage().timeouts().implicitlyWait(FileHelper.getResInteger("IMPLICIT_WAIT"), TimeUnit.SECONDS);
         driver.manage().window().maximize();
@@ -159,22 +158,18 @@ public class TestSetupPage {
             .ignoring(NoSuchElementException.class, NullPointerException.class);
 
     protected void waitForDisplayed(WebElement element, int seconds) {
-        wait.withTimeout(Duration.ofSeconds(seconds)).until(a -> checkDisplayed(element));
+        wait.withTimeout(Duration.ofSeconds(seconds)).until(a -> element.isDisplayed());
     }
 
     protected void waitForDisplayed(WebElement element) {
-        wait.until(a -> checkDisplayed(element));
+        wait.until(a -> element.isDisplayed());
     }
 
     protected void waitForDisappear(WebElement element, int seconds) {
-        wait.withTimeout(Duration.ofSeconds(seconds)).until(a -> !checkDisplayed(element));
+        wait.withTimeout(Duration.ofSeconds(seconds)).until(a -> !element.isDisplayed());
     }
 
     protected void waitForDisappear(WebElement element) {
-        wait.until(a -> !checkDisplayed(element));
-    }
-
-    private boolean checkDisplayed(WebElement element) {
-        return element.isDisplayed();
+        wait.until(a -> !element.isDisplayed());
     }
 }
