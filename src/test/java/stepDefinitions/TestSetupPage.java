@@ -8,6 +8,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.FluentWait;
 
@@ -22,19 +24,75 @@ import java.util.logging.Level;
 public class TestSetupPage {
     protected static EventFiringWebDriver driver;
     private static JavascriptExecutor js;
-    private static final int TIMEOUT = 10;
 
     /**
-     * Set all necessary chrome driver options
-     *
-     * @return chrome options
+     * Start Driver
+     * Pause the browser auto fill password modal
+     * Dynamic driver path
      */
-    private ChromeOptions getChromeOptions() {
-        //Set properties
-        System.setProperty(ChromeDriverService.CHROME_DRIVER_EXE_PROPERTY, System.getProperty("user.dir") + FileHelper.CHROME_DRIVER_PATH);
-        System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true"); //selenium text ignore
-        java.util.logging.Logger.getLogger("org.openqa.selenium").setLevel(Level.OFF);
+    void startDriver() {
+        WebDriver webDriver = getWebDriver(FileHelper.getResString("BROWSER"));
+        js = (JavascriptExecutor) webDriver;
+        driver = getEventFiringWebDriver(webDriver);
+        driver.manage().timeouts().implicitlyWait(FileHelper.getResInteger("IMPLICIT_WAIT"), TimeUnit.SECONDS);
+        driver.manage().window().maximize();
+        driver.get(FileHelper.getResString("BASE_URL"));
+    }
 
+    /**
+     * This will close the browser & ends the session
+     */
+    void stopDriver() {
+        driver.quit();
+    }
+
+    /**
+     * Chrome driver instantiate
+     *
+     * @return
+     */
+    private static WebDriver getWebDriver(String browser) {
+        switch (browser.toLowerCase()) {
+            case "chrome":
+                setChromeDriverProperty();
+                return new ChromeDriver(getChromeOptions());
+
+            case "firefox":
+                setFirefoxDriverProperty();
+                return new FirefoxDriver(getFirefoxOptions());
+
+            default:
+                System.out.println("[" + browser + "] is not a correct browser name.");
+        }
+        return null;
+    }
+
+    /**
+     * get event firing web driver
+     *
+     * @param webDriver
+     * @return
+     */
+    private static EventFiringWebDriver getEventFiringWebDriver(WebDriver webDriver) {
+        driver = new EventFiringWebDriver(webDriver);
+        if (FileHelper.getResBoolean("EVENT_ENABLE"))
+            return driver.register(new EventReporter());
+        return driver;
+    }
+
+    /**
+     * set chrome driver property
+     */
+    private static void setChromeDriverProperty() {
+        java.util.logging.Logger.getLogger("org.openqa.selenium").setLevel(Level.OFF);
+        System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true");
+        System.setProperty(ChromeDriverService.CHROME_DRIVER_EXE_PROPERTY, FileHelper.CHROME_DRIVER_PATH);
+    }
+
+    /**
+     * @return Chrome driver options
+     */
+    private static ChromeOptions getChromeOptions() {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--disable-notifications");
         chromeOptions.addArguments("--disable-notifications");
@@ -46,31 +104,26 @@ public class TestSetupPage {
         prefs.put("profile.password_manager_enabled", false);
         chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
         chromeOptions.setExperimentalOption("prefs", prefs);
+        chromeOptions.setHeadless(FileHelper.getResBoolean("HEADLESS"));
         return chromeOptions;
     }
 
     /**
-     * Start Driver
-     * Pause the browser auto fill password modal
-     * Dynamic driver path
+     * set firefox driver property
      */
-    void startDriver() {
-        WebDriver webDriver = new ChromeDriver(getChromeOptions());
-        js = (JavascriptExecutor) webDriver;
-        driver = new EventFiringWebDriver(webDriver);
-        driver.register(new EventReporter());
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://sqa.quartolab.com/account/login?email=hasancse10@gmail.com");
-//        driver.get("https://quartolab.com/");
+    private static void setFirefoxDriverProperty() {
+        java.util.logging.Logger.getLogger("org.openqa.selenium").setLevel(Level.OFF);
+        System.setProperty("webdriver.gecko.driver", FileHelper.FIREFOX_DRIVER_PATH);
+        System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE, "/dev/null");
     }
 
     /**
-     * This will close the browser & ends the session
+     * @return Firefox driver options
      */
-    void stopDriver() {
-        if (driver != null)
-            driver.quit();
+    private static FirefoxOptions getFirefoxOptions() {
+        FirefoxOptions options = new FirefoxOptions();
+        options.setHeadless(FileHelper.getResBoolean("HEADLESS"));
+        return options;
     }
 
     /**
@@ -79,7 +132,7 @@ public class TestSetupPage {
      * @param scenario
      */
     public static void takeScreenshot(Scenario scenario) {
-        if (scenario.isFailed()) {
+        if (scenario.isFailed() || FileHelper.getResBoolean("SCREENSHOT")) {
             String screenshotName = getScreenshotName(scenario.getName());
             File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             try {
@@ -92,7 +145,7 @@ public class TestSetupPage {
 
     private static String getScreenshotName(String name) {
         String screenshot = FileHelper.SCREENSHOT_DIR + name.replaceAll("[-()#.,]", "").replaceAll("[/ :]", "_") + ".png";
-        System.setProperty("SCREENSHOT_NAME", screenshot);
+        System.setProperty("SCREENSHOT", screenshot);
         return screenshot;
     }
 
@@ -100,7 +153,7 @@ public class TestSetupPage {
      * Initiate fluent wait with default configuration
      */
     private FluentWait<String> wait = new FluentWait<>("")
-            .withTimeout(Duration.ofSeconds(TIMEOUT))
+            .withTimeout(Duration.ofSeconds(FileHelper.getResInteger("EXPLICIT_WAIT")))
             .pollingEvery(Duration.ofMillis(400))
             .ignoring(NoSuchElementException.class, NullPointerException.class);
 

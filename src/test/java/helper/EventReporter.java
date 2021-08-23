@@ -140,7 +140,7 @@ public class EventReporter implements WebDriverEventListener {
 
     @Override
     public <X> void afterGetScreenshotAs(OutputType<X> outputType, X x) {
-        System.out.println("Screenshot: \t" + System.getProperty("SCREENSHOT_NAME") + "\n");
+        System.out.println("Screenshot: \t" + System.getProperty("SCREENSHOT") + "\n");
     }
 
     @Override
