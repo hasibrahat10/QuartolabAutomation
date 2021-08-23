@@ -1,17 +1,18 @@
 package stepDefinitions;
 
+import cucumber.api.Scenario;
 import helper.EventReporter;
 import helper.FileHelper;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.FluentWait;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
@@ -70,6 +71,29 @@ public class TestSetupPage {
     void stopDriver() {
         if (driver != null)
             driver.quit();
+    }
+
+    /**
+     * End of the test take a screenshot
+     *
+     * @param scenario
+     */
+    public static void takeScreenshot(Scenario scenario) {
+        if (scenario.isFailed()) {
+            String screenshotName = getScreenshotName(scenario.getName());
+            File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            try {
+                FileUtils.copyFile(screenshotFile, new File(screenshotName));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private static String getScreenshotName(String name) {
+        String screenshot = FileHelper.SCREENSHOT_DIR + name.replaceAll("[-()#.,]", "").replaceAll("[/ :]", "_") + ".png";
+        System.setProperty("SCREENSHOT_NAME", screenshot);
+        return screenshot;
     }
 
     /**

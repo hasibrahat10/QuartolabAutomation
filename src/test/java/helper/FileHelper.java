@@ -19,18 +19,4 @@ public class FileHelper extends TestSetupPage {
     public static final String EMAIL_ADDRESS = System.getenv("email");
     public static final String PASSWORD = System.getenv("password");
 
-    public static void takeScreenshot(String scenarioName) {
-        File screenshot_file;
-        try {
-            String screenshot_name = cleanString(scenarioName) + "_" + ".png";
-            screenshot_file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(screenshot_file, new File(FileHelper.SCREENSHOT_DIR + screenshot_name));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static String cleanString(String scenario_name) {
-        return scenario_name.replaceAll("[-()#.,]", "").replaceAll("[/ :]", "_");
-    }
 }
