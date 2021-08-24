@@ -24,27 +24,13 @@ import java.util.logging.Level;
 public class TestSetupPage {
     protected static EventFiringWebDriver driver;
     private static JavascriptExecutor executor;
-
     /**
-     * Start Driver
-     * Pause the browser auto fill password modal
-     * Dynamic driver path
+     * Initiate fluent wait with default configuration
      */
-    void startDriver() {
-        WebDriver webDriver = getWebDriver(FileHelper.getResString("BROWSER"));
-        executor = (JavascriptExecutor) webDriver;
-        driver = getEventFiringWebDriver(webDriver);
-        driver.manage().timeouts().implicitlyWait(FileHelper.getResInteger("IMPLICIT_WAIT"), TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-        driver.get(FileHelper.getResString("BASE_URL"));
-    }
-
-    /**
-     * This will close the browser & ends the session
-     */
-    void stopDriver() {
-        driver.quit();
-    }
+    private FluentWait<String> wait = new FluentWait<>("")
+            .withTimeout(Duration.ofSeconds(FileHelper.getResInteger("EXPLICIT_WAIT")))
+            .pollingEvery(Duration.ofMillis(400))
+            .ignoring(NoSuchElementException.class, NullPointerException.class);
 
     /**
      * Chrome driver instantiate
@@ -150,52 +136,6 @@ public class TestSetupPage {
     }
 
     /**
-     * Initiate fluent wait with default configuration
-     */
-    private FluentWait<String> wait = new FluentWait<>("")
-            .withTimeout(Duration.ofSeconds(FileHelper.getResInteger("EXPLICIT_WAIT")))
-            .pollingEvery(Duration.ofMillis(400))
-            .ignoring(NoSuchElementException.class, NullPointerException.class);
-
-    /**
-     * Wait for element to be displayed upto a certain time
-     *
-     * @param element wait for which element
-     * @param seconds amount of wait time
-     */
-    protected void waitForDisplayed(WebElement element, int seconds) {
-        wait.withTimeout(Duration.ofSeconds(seconds)).until(a -> element.isDisplayed());
-    }
-
-    /**
-     * Wait for element to be displayed upto prefix explicit time
-     *
-     * @param element
-     */
-    protected void waitForDisplayed(WebElement element) {
-        wait.until(a -> element.isDisplayed());
-    }
-
-    /**
-     * Wait for element to be not displayed upto a certain time
-     *
-     * @param element wait for which element
-     * @param seconds amount of wait time
-     */
-    protected void waitForNotDisplayed(WebElement element, int seconds) {
-        wait.withTimeout(Duration.ofSeconds(seconds)).until(a -> !element.isDisplayed());
-    }
-
-    /**
-     * Wait for element to be not displayed upto prefix explicit time
-     *
-     * @param element
-     */
-    protected void waitForNotDisplayed(WebElement element) {
-        wait.until(a -> !element.isDisplayed());
-    }
-
-    /**
      * Hard sleep for seconds
      *
      * @param seconds
@@ -261,5 +201,64 @@ public class TestSetupPage {
         sleepInMillis(500);
         executor.executeScript("arguments[0].scrollIntoView();", element);
         sleepInMillis(500);
+    }
+
+    /**
+     * Start Driver
+     * Pause the browser auto fill password modal
+     * Dynamic driver path
+     */
+    void startDriver() {
+        WebDriver webDriver = getWebDriver(FileHelper.getResString("BROWSER"));
+        executor = (JavascriptExecutor) webDriver;
+        driver = getEventFiringWebDriver(webDriver);
+        driver.manage().timeouts().implicitlyWait(FileHelper.getResInteger("IMPLICIT_WAIT"), TimeUnit.SECONDS);
+        driver.manage().window().maximize();
+        driver.get(FileHelper.getResString("BASE_URL"));
+    }
+
+    /**
+     * This will close the browser & ends the session
+     */
+    void stopDriver() {
+        driver.quit();
+    }
+
+    /**
+     * Wait for element to be displayed upto a certain time
+     *
+     * @param element wait for which element
+     * @param seconds amount of wait time
+     */
+    protected void waitForDisplayed(WebElement element, int seconds) {
+        wait.withTimeout(Duration.ofSeconds(seconds)).until(a -> element.isDisplayed());
+    }
+
+    /**
+     * Wait for element to be displayed upto prefix explicit time
+     *
+     * @param element
+     */
+    protected void waitForDisplayed(WebElement element) {
+        wait.until(a -> element.isDisplayed());
+    }
+
+    /**
+     * Wait for element to be not displayed upto a certain time
+     *
+     * @param element wait for which element
+     * @param seconds amount of wait time
+     */
+    protected void waitForNotDisplayed(WebElement element, int seconds) {
+        wait.withTimeout(Duration.ofSeconds(seconds)).until(a -> !element.isDisplayed());
+    }
+
+    /**
+     * Wait for element to be not displayed upto prefix explicit time
+     *
+     * @param element
+     */
+    protected void waitForNotDisplayed(WebElement element) {
+        wait.until(a -> !element.isDisplayed());
     }
 }

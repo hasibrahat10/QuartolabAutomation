@@ -42,31 +42,36 @@ public class ProfilePage extends TestSetupPage {
      * setPassword method calling caused
      * we'll directly land on password screen
      */
-    public  void clickProfile (){
+    public void clickProfile() {
         new HomePage().setPassword();
         waitForDisplayed(profile);
         profile.click();
     }
 
-    public void clickMyAccount(){
+    public void clickMyAccount() {
         waitForDisplayed(myAccount);
         myAccount.click();
     }
 
-    public void updateProfileInfo(){
+    public void updateProfileInfo() {
         waitForDisplayed(firstName);
         firstName.clear();
         firstName.sendKeys(new Faker().name().firstName());
         lastName.clear();
         lastName.sendKeys(new Faker().name().lastName());
         designation.sendKeys((new Faker().job().title()));
+        scrollToBottom();
         department.sendKeys(new Faker().job().position());
         phone.sendKeys(new Faker().number().digits(10));
         waitForDisplayed(update);
         update.click();
     }
 
-    public void setLogout(){
+    public void backToProfileImgClick(){
+        waitForDisplayed(profile);
+        profile.click();
+    }
+    public void setLogout() {
         waitForDisplayed(logout);
         logout.click();
     }

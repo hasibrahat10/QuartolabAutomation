@@ -90,7 +90,6 @@ public class HomePage extends TestSetupPage {
 
     public void setPassword() {
         waitForDisplayed(password);
-        password.isDisplayed();
         password.sendKeys(FileHelper.PASSWORD);
         login.click();
     }
