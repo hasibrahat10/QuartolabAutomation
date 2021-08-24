@@ -141,9 +141,7 @@ public class PublishDocumentPage extends TestSetupPage {
         selectCategory("Normal docs track");
         categorySelectDone.click();
         publishDoc.click();
-        sleep(2);
         confirmYes.click();
-        sleep(4);
         backToContentMgr.click();
     }
 
@@ -152,7 +150,6 @@ public class PublishDocumentPage extends TestSetupPage {
      */
     public void setVisualDocBtn() {
         visualDocBtn.click();
-        sleep(5);
     }
 
     public void visualDocInfo() {
@@ -211,7 +208,7 @@ public class PublishDocumentPage extends TestSetupPage {
             videoFileBrowse.sendKeys(FileHelper.VIDEOS_DIR + video);
             waitForDisplayed(uploadProgressBar);
         }
-        scrollDownToElement(videoDescription);
+        waitForDisplayed(videoDescription);
         videoDescription.sendKeys("Description of video " + new Faker().lorem().paragraph());
     }
 

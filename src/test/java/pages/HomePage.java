@@ -104,7 +104,7 @@ public class HomePage extends TestSetupPage {
     public void setCookiesAccept() {
         waitForDisplayed(cookiesAccept, 20);
         cookiesAccept.click();
-        sleep(2);
+
     }
 
     public void setLogMenuItem() {
