@@ -208,7 +208,9 @@ public class PublishDocumentPage extends TestSetupPage {
             videoFileBrowse.sendKeys(FileHelper.VIDEOS_DIR + video);
             waitForDisplayed(uploadProgressBar);
         }
+
         waitForDisplayed(videoDescription);
+
         videoDescription.sendKeys("Description of video " + new Faker().lorem().paragraph());
     }
 
