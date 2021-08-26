@@ -166,7 +166,7 @@ public class TestSetupPage {
      */
     protected static void scrollToTop() {
         sleepInMillis(500);
-        executor.executeScript("window.scrollTo(0, 0)");
+        driver.executeScript("window.scrollTo(0, 0)");
         sleepInMillis(500);
     }
 
@@ -175,7 +175,7 @@ public class TestSetupPage {
      */
     protected static void scrollToBottom() {
         sleepInMillis(500);
-        executor.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        driver.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         sleepInMillis(500);
     }
 
@@ -187,7 +187,7 @@ public class TestSetupPage {
     protected static void scrollToDown(int pixel, int count) {
         sleepInMillis(500);
         for (int i = 0; i < count; i++) {
-            executor.executeScript("window.scrollBy(0, " + pixel + ")");
+            driver.executeScript("window.scrollBy(0, " + pixel + ")");
             sleepInMillis(100);
         }
     }
@@ -199,7 +199,7 @@ public class TestSetupPage {
      */
     protected static void scrollToElement(WebElement element) {
         sleepInMillis(500);
-        executor.executeScript("arguments[0].scrollIntoView();", element);
+        driver.executeScript("arguments[0].scrollIntoView();", element);
         sleepInMillis(500);
     }
 
