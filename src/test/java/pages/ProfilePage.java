@@ -60,7 +60,7 @@ public class ProfilePage extends TestSetupPage {
         lastName.clear();
         lastName.sendKeys(new Faker().name().lastName());
         designation.sendKeys((new Faker().job().title()));
-        scrollToBottom();
+        scrollToElement(department);
         department.sendKeys(new Faker().job().position());
         phone.sendKeys(new Faker().number().digits(10));
         waitForDisplayed(update);
