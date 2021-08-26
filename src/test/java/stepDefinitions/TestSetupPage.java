@@ -23,16 +23,14 @@ import java.util.logging.Level;
 
 public class TestSetupPage {
     protected static EventFiringWebDriver driver;
-    private static JavascriptExecutor executor;
 
     /**
      * Start Driver
      * Pause the browser auto fill password modal
      * Dynamic driver path
      */
-    void startDriver() {
+    protected void startDriver() {
         WebDriver webDriver = getWebDriver(FileHelper.getResString("BROWSER"));
-        executor = (JavascriptExecutor) webDriver;
         driver = getEventFiringWebDriver(webDriver);
         driver.manage().timeouts().implicitlyWait(FileHelper.getResInteger("IMPLICIT_WAIT"), TimeUnit.SECONDS);
         driver.manage().window().maximize();
@@ -42,7 +40,7 @@ public class TestSetupPage {
     /**
      * This will close the browser & ends the session
      */
-    void stopDriver() {
+    protected void stopDriver() {
         driver.quit();
     }
 
@@ -226,7 +224,7 @@ public class TestSetupPage {
      */
     protected static void scrollToTop() {
         sleepInMillis(500);
-        executor.executeScript("window.scrollTo(0, 0)");
+        driver.executeScript("window.scrollTo(0, 0)");
         sleepInMillis(500);
     }
 
@@ -235,7 +233,7 @@ public class TestSetupPage {
      */
     protected static void scrollToBottom() {
         sleepInMillis(500);
-        executor.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        driver.executeScript("window.scrollTo(0, document.body.scrollHeight)");
         sleepInMillis(500);
     }
 
@@ -247,7 +245,7 @@ public class TestSetupPage {
     protected static void scrollToDown(int pixel, int count) {
         sleepInMillis(500);
         for (int i = 0; i < count; i++) {
-            executor.executeScript("window.scrollBy(0, " + pixel + ")");
+            driver.executeScript("window.scrollBy(0, " + pixel + ")");
             sleepInMillis(100);
         }
     }
@@ -259,7 +257,7 @@ public class TestSetupPage {
      */
     protected static void scrollToElement(WebElement element) {
         sleepInMillis(500);
-        executor.executeScript("arguments[0].scrollIntoView();", element);
+        driver.executeScript("arguments[0].scrollIntoView();", element);
         sleepInMillis(500);
     }
 }
