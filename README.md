@@ -100,7 +100,7 @@ git clone https://github.com/hasibrahat10/QuartolabAutomation.git
 ### Local run
 
 - Go to testRunner package and open this `TestRunner.java` file
-- Right click on the file
+- Right-click on the file
 - Select `Run 'TestRunner'` option
 - Then click on it
 - It will run all the test that mention in the tags (`tags = {"@login, @contact-us, ~@login-failed"}`)
