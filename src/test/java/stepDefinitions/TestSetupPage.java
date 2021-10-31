@@ -35,6 +35,7 @@ public class TestSetupPage {
         driver.manage().timeouts().implicitlyWait(FileHelper.getResInteger("IMPLICIT_WAIT"), TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get(FileHelper.getResString("BASE_URL"));
+
     }
 
     /**

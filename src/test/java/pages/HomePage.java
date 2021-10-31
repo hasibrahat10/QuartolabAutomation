@@ -126,7 +126,7 @@ public class HomePage extends TestSetupPage {
         userName.clear();
         userName.sendKeys("test" + new Faker().name().username());
         userEmail.clear();
-        userEmail.sendKeys("hasib" + new Faker().number().digits(2) + "yopmail.com");
+        userEmail.sendKeys("hasib" + new Faker().number().digits(2) + "@yopmail.com");
         companyName.clear();
         companyName.sendKeys("my" + new Faker().company().name());
         phoneNumber.clear();
