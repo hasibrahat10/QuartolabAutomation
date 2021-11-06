@@ -97,7 +97,9 @@ public class TestSetupPage {
         chromeOptions.addArguments("--disable-notifications");
         chromeOptions.addArguments("--ignore-certificate-errors");
 
-        //Chrome control text
+        /**
+         * Chrome control text
+         */
         Map<String, Object> prefs = new HashMap<String, Object>();
         prefs.put("credentials_enable_service", false);
         prefs.put("profile.password_manager_enabled", false);
